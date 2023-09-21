@@ -17,9 +17,9 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler{
 //            log.info("Following response was sent: " + ex.getMessage());
 //            return ResponseEntity.badRequest().body(ex.getMessage());
 //        }
-        @ExceptionHandler({WrongIdException.class})
-        protected ResponseEntity<Object> handleWrongIdException(WrongIdException ex) {
-            log.error(ex.getMessage());
+        @ExceptionHandler({IllegalInputException.class})
+        protected ResponseEntity<Object> handleWrongInputException(IllegalInputException ex) {
+            log.info(ex.getMessage());
             return ResponseEntity.badRequest().body(ex.getMessage());
         }
 

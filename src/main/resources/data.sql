@@ -4,4 +4,4 @@ insert into question (id, category_id, learning_field_id, question) values ('4a3
 insert into answer (id, question_id, answer, correct) values ('bd3528e7-5b4e-42ce-885a-5ed904184cf3', '4a3318b5-3a02-400b-9807-730962452fa7', 'W = Q * U (Elektrische Arbeit W = Elektrizitätsmenge Q * Elektrische Spannung U)', true);
 insert into answer (id, question_id, answer, correct) values ('de22a094-279e-4aa5-988e-c042a7d50cfd', '4a3318b5-3a02-400b-9807-730962452fa7', 'W = U / Q (Elektrische Arbeit W = Elektrische Spannung U / Elektrizitätsmenge Q)', false);
 insert into answer (id, question_id, answer, correct) values ('98481cc6-788a-46ae-9f3a-5b127a3d1ad0', '4a3318b5-3a02-400b-9807-730962452fa7', 'W = Q + A (Elektrische Arbeit W = Elektrizitätsmenge Q + Ampere A)', false);
-insert into student (id, user_name, password, first_name, last_name) values ('98481cc6-788a-46ae-9f3a-5b127a3d1ab1', 'todesTimoOfDeath', 'ilovefrontend', 'Timo', 'Reiswaffel');
+insert into student (id, user_name, password, first_name, last_name) values ('98481cc6-788a-46ae-9f3a-5b127a3d1ab1', 'todesTimonOfDeath', 'ilovefrontend', 'Timon', 'Reiswaffel');

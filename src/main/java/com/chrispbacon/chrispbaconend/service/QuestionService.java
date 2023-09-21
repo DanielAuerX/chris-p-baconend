@@ -1,6 +1,6 @@
 package com.chrispbacon.chrispbaconend.service;
 
-import com.chrispbacon.chrispbaconend.exception.WrongIdException;
+import com.chrispbacon.chrispbaconend.exception.IllegalInputException;
 import com.chrispbacon.chrispbaconend.model.Answer;
 import com.chrispbacon.chrispbaconend.model.Question;
 import com.chrispbacon.chrispbaconend.model.QuestionDto;
@@ -20,7 +20,7 @@ public class QuestionService {
     public QuestionDto getQuestionWithAnswers(Long category_id) {
         Question randomQuestion = questionRepository.findRandomQuestionByCategoryId(category_id);
         if (randomQuestion == null) {
-            throw new WrongIdException("The category id " + category_id + " does not exist! Please get your ducks in a row before you execute the next request.");
+            throw new IllegalInputException("The category id " + category_id + " does not exist! Please get your ducks in a row before you execute the next request.");
         }
         List<Answer> answers = answerRepository.findAnswersByQuestionId(randomQuestion.getId());
         return new QuestionDto(randomQuestion, answers);
