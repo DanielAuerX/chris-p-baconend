@@ -8,26 +8,26 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 @ControllerAdvice
 @Slf4j
-public class GlobalExceptionHandler extends ResponseEntityExceptionHandler{
+public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
-        //https://www.baeldung.com/exception-handling-for-rest-with-spring
+    //https://www.baeldung.com/exception-handling-for-rest-with-spring
 
-//        @ExceptionHandler({RuntimeException.class})
+    //        @ExceptionHandler({RuntimeException.class})
 //        protected ResponseEntity<Object> handleRuntimeException(RuntimeException ex) {
 //            log.info("Following response was sent: " + ex.getMessage());
 //            return ResponseEntity.badRequest().body(ex.getMessage());
 //        }
-        @ExceptionHandler({IllegalInputException.class})
-        protected ResponseEntity<Object> handleWrongInputException(IllegalInputException ex) {
-            log.info(ex.getMessage());
-            return ResponseEntity.badRequest().body(ex.getMessage());
-        }
+    @ExceptionHandler({IllegalInputException.class})
+    protected ResponseEntity<Object> handleWrongInputException(IllegalInputException ex) {
+        log.info(ex.getMessage());
+        return ResponseEntity.badRequest().body(ex.getMessage());
+    }
 
 
-        //@ExceptionHandler({MethodArgumentNotValidException.class})
-        //public ResponseEntity<Object> handleNullArguments(MethodArgumentNotValidException ex) {
-        //    log.error(ex.getMessage());
-        //    return ResponseEntity.status(400).body("You have to enter the right parameters!");
-        //}
+    //@ExceptionHandler({MethodArgumentNotValidException.class})
+    //public ResponseEntity<Object> handleNullArguments(MethodArgumentNotValidException ex) {
+    //    log.error(ex.getMessage());
+    //    return ResponseEntity.status(400).body("You have to enter the right parameters!");
+    //}
 
 }
