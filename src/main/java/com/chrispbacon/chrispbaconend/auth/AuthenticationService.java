@@ -4,10 +4,10 @@ package com.chrispbacon.chrispbaconend.auth;
 import com.chrispbacon.chrispbaconend.auth.token.Token;
 import com.chrispbacon.chrispbaconend.auth.token.TokenRepository;
 import com.chrispbacon.chrispbaconend.auth.token.TokenType;
+import com.chrispbacon.chrispbaconend.config.JwtService;
 import com.chrispbacon.chrispbaconend.model.Role;
 import com.chrispbacon.chrispbaconend.model.Student;
 import com.chrispbacon.chrispbaconend.repository.UserRepository;
-import com.chrispbacon.chrispbaconend.config.JwtService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -35,6 +35,7 @@ public class AuthenticationService {
                 .id(UUID.randomUUID())
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
+                .userName(request.getUserName())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.USER)
@@ -51,6 +52,9 @@ public class AuthenticationService {
 
     public boolean checkIfEmailExists(RegisterRequest request) {
         return repository.findByEmail(request.getEmail()).isPresent();
+    }
+    public boolean checkIfUserNameExists(RegisterRequest request) {
+        return repository.findByUserName(request.getUserName()).isPresent();
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {

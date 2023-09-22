@@ -25,8 +25,8 @@ public class QuestionnaireController {
 
 
     @GetMapping()
-    public ResponseEntity<Object> getQuestion(@RequestParam Long category_id) {
-        return ResponseEntity.ok(questionService.getQuestionWithAnswers(category_id));
+    public ResponseEntity<Object> getQuestion(@RequestParam Long categoryId) {
+        return ResponseEntity.ok(questionService.getQuestionWithAnswers(categoryId));
     }
 
     @GetMapping("/correction")

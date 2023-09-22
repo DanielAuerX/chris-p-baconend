@@ -1,5 +1,6 @@
 package com.chrispbacon.chrispbaconend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -17,6 +18,7 @@ public class Category {
     @ManyToOne(optional = false)
     private LearningField learningField;
     private String name;
+    private String description;
     @Column(length = 1000)
     private String text;
 }
