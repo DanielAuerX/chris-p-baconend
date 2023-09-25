@@ -47,10 +47,7 @@ public class AuthenticationService {
         var jwtToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(user);
         saveUserToken(savedUser, jwtToken);
-        return AuthenticationResponse.builder()
-                .accessToken(jwtToken)
-                .refreshToken(refreshToken)
-                .build();
+        return generateAuthenticationResponse(savedUser, jwtToken, refreshToken);
     }
 
     public boolean checkIfEmailExists(RegisterRequest request) {
@@ -76,7 +73,7 @@ public class AuthenticationService {
         return generateAuthenticationResponse(user, jwtToken, refreshToken);
     }
 
-    private static AuthenticationResponse generateAuthenticationResponse(Student user, String jwtToken, String refreshToken) {
+    private AuthenticationResponse generateAuthenticationResponse(Student user, String jwtToken, String refreshToken) {
         UserDto userDto = new UserDto(user);
         return AuthenticationResponse.builder()
                 .accessToken(jwtToken)

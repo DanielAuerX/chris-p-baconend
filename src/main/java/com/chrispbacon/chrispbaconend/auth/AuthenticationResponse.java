@@ -1,6 +1,5 @@
 package com.chrispbacon.chrispbaconend.auth;
 
-import com.chrispbacon.chrispbaconend.model.user.Student;
 import com.chrispbacon.chrispbaconend.model.user.UserDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

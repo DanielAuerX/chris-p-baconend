@@ -15,6 +15,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -44,7 +45,7 @@ class AuthenticationServiceTest {
     void register_ShouldReturnCorrectAuthenticationResponse() {
         RegisterRequest request = new RegisterRequest("test@email.com", "testName", "xyz", "max", "mustermann");
         when(passwordEncoder.encode(request.getPassword())).thenReturn("xyz");
-        when(repository.save(any(Student.class))).thenReturn(new Student(UUID.randomUUID(), request.getEmail(), request.getUserName(), request.getPassword(), request.getFirstName(), request.getLastName(), Role.USER, null));
+        when(repository.save(any(Student.class))).thenReturn(new Student(UUID.randomUUID(), request.getEmail(), request.getUserName(), request.getPassword(), request.getFirstName(), request.getLastName(), Role.USER, new ArrayList<>()));
         String token = "abcdefgh";
         when(jwtService.generateToken(any(UserDetails.class))).thenReturn(token);
         String refreshToken = "1234567890";
@@ -55,6 +56,8 @@ class AuthenticationServiceTest {
 
         assertEquals(token, result.getAccessToken());
         assertEquals(refreshToken, result.getRefreshToken());
+        assertNotNull(result.getUser());
+        assertEquals(request.getUserName(), result.getUser().getUserName());
         verify(repository).save(any(Student.class));
     }
 }
