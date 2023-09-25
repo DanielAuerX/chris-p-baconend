@@ -12,10 +12,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -27,7 +29,7 @@ import static org.mockito.Mockito.when;
 class AuthenticationServiceTest {
 
     @Mock
-    private UserRepository repository;
+    private UserRepository userRepository;
     @Mock
     private TokenRepository tokenRepository;
     @Mock
@@ -45,7 +47,7 @@ class AuthenticationServiceTest {
     void register_ShouldReturnCorrectAuthenticationResponse() {
         RegisterRequest request = new RegisterRequest("test@email.com", "testName", "xyz", "max", "mustermann");
         when(passwordEncoder.encode(request.getPassword())).thenReturn("xyz");
-        when(repository.save(any(Student.class))).thenReturn(new Student(UUID.randomUUID(), request.getEmail(), request.getUserName(), request.getPassword(), request.getFirstName(), request.getLastName(), Role.USER, new ArrayList<>()));
+        when(userRepository.save(any(Student.class))).thenReturn(new Student(UUID.randomUUID(), request.getEmail(), request.getUserName(), request.getPassword(), request.getFirstName(), request.getLastName(), Role.USER, new ArrayList<>()));
         String token = "abcdefgh";
         when(jwtService.generateToken(any(UserDetails.class))).thenReturn(token);
         String refreshToken = "1234567890";
@@ -58,6 +60,26 @@ class AuthenticationServiceTest {
         assertEquals(refreshToken, result.getRefreshToken());
         assertNotNull(result.getUser());
         assertEquals(request.getUserName(), result.getUser().getUserName());
-        verify(repository).save(any(Student.class));
+        verify(userRepository).save(any(Student.class));
+    }
+
+    @Test
+    void authenticate_ShouldReturnCorrectAuthenticationResponse() {
+        Student student = new Student(UUID.randomUUID(), "test@email.com", "maxCool", "123", "hans", "müller", Role.USER, new ArrayList<>());
+        AuthenticationRequest authenticationRequest = new AuthenticationRequest(student.getUsername(), student.getPassword());
+        when(authenticationManager.authenticate(any(UsernamePasswordAuthenticationToken.class))).thenReturn(null);
+        when(userRepository.findByUserName(authenticationRequest.getUserName())).thenReturn(Optional.of(student));
+        String token = "abcdefgh";
+        when(jwtService.generateToken(any(UserDetails.class))).thenReturn(token);
+        String refreshToken = "1234567890";
+        when(jwtService.generateRefreshToken(any(UserDetails.class))).thenReturn(refreshToken);
+
+        AuthenticationResponse result = authenticationService.authenticate(authenticationRequest);
+
+        assertEquals(token, result.getAccessToken());
+        assertEquals(refreshToken, result.getRefreshToken());
+        assertNotNull(result.getUser());
+        assertEquals(authenticationRequest.getUserName(), result.getUser().getUserName());
+        verify(tokenRepository).save(any(Token.class));
     }
 }
