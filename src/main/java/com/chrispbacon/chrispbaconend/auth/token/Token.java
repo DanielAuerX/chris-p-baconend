@@ -1,6 +1,6 @@
 package com.chrispbacon.chrispbaconend.auth.token;
 
-import com.chrispbacon.chrispbaconend.model.Student;
+import com.chrispbacon.chrispbaconend.model.user.Student;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

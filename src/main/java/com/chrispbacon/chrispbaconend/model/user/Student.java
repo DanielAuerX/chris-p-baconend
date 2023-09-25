@@ -1,16 +1,17 @@
-package com.chrispbacon.chrispbaconend.model;
+package com.chrispbacon.chrispbaconend.model.user;
 
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -27,6 +28,8 @@ public class Student implements UserDetails {
     private String firstName;
     private String lastName;
     private Role role;
+    @ElementCollection
+    private List<Long> finishedCategories;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

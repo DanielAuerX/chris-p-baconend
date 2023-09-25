@@ -5,8 +5,9 @@ import com.chrispbacon.chrispbaconend.auth.token.Token;
 import com.chrispbacon.chrispbaconend.auth.token.TokenRepository;
 import com.chrispbacon.chrispbaconend.auth.token.TokenType;
 import com.chrispbacon.chrispbaconend.config.JwtService;
-import com.chrispbacon.chrispbaconend.model.Role;
-import com.chrispbacon.chrispbaconend.model.Student;
+import com.chrispbacon.chrispbaconend.model.user.Role;
+import com.chrispbacon.chrispbaconend.model.user.Student;
+import com.chrispbacon.chrispbaconend.model.user.UserDto;
 import com.chrispbacon.chrispbaconend.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,12 +20,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
-    private final UserRepository repository;
+    private final UserRepository userRepository;
     private final TokenRepository tokenRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
@@ -39,8 +41,9 @@ public class AuthenticationService {
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.USER)
+                .finishedCategories(new ArrayList<>())
                 .build();
-        var savedUser = repository.save(user);
+        var savedUser = userRepository.save(user);
         var jwtToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(user);
         saveUserToken(savedUser, jwtToken);
@@ -51,28 +54,34 @@ public class AuthenticationService {
     }
 
     public boolean checkIfEmailExists(RegisterRequest request) {
-        return repository.findByEmail(request.getEmail()).isPresent();
+        return userRepository.findByEmail(request.getEmail()).isPresent();
     }
     public boolean checkIfUserNameExists(RegisterRequest request) {
-        return repository.findByUserName(request.getUserName()).isPresent();
+        return userRepository.findByUserName(request.getUserName()).isPresent();
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        request.getEmail(),
+                        request.getUserName(),
                         request.getPassword()
                 )
         );
-        var user = repository.findByEmail(request.getEmail())
+        var user = userRepository.findByUserName(request.getUserName())
                 .orElseThrow();
         var jwtToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(user);
         revokeAllUserTokens(user);
         saveUserToken(user, jwtToken);
+        return generateAuthenticationResponse(user, jwtToken, refreshToken);
+    }
+
+    private static AuthenticationResponse generateAuthenticationResponse(Student user, String jwtToken, String refreshToken) {
+        UserDto userDto = new UserDto(user);
         return AuthenticationResponse.builder()
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
+                .user(userDto)
                 .build();
     }
 
@@ -111,7 +120,7 @@ public class AuthenticationService {
         refreshToken = authHeader.substring(7);
         userEmail = jwtService.extractUsername(refreshToken);
         if (userEmail != null) {
-            var user = this.repository.findByEmail(userEmail)
+            var user = this.userRepository.findByEmail(userEmail)
                     .orElseThrow();
             if (jwtService.isTokenValid(refreshToken, user)) {
                 var accessToken = jwtService.generateToken(user);

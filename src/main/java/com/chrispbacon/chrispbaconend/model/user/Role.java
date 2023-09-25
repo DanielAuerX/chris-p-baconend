@@ -1,5 +1,6 @@
-package com.chrispbacon.chrispbaconend.model;
+package com.chrispbacon.chrispbaconend.model.user;
 
+import com.chrispbacon.chrispbaconend.model.Permission;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
