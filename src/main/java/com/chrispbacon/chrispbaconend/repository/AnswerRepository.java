@@ -1,6 +1,6 @@
 package com.chrispbacon.chrispbaconend.repository;
 
-import com.chrispbacon.chrispbaconend.model.Answer;
+import com.chrispbacon.chrispbaconend.model.answer.Answer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

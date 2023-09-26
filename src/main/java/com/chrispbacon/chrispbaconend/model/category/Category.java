@@ -1,6 +1,6 @@
-package com.chrispbacon.chrispbaconend.model;
+package com.chrispbacon.chrispbaconend.model.category;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.chrispbacon.chrispbaconend.model.LearningField;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

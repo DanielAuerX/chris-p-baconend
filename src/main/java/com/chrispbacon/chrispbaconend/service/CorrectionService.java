@@ -1,7 +1,7 @@
 package com.chrispbacon.chrispbaconend.service;
 
 import com.chrispbacon.chrispbaconend.exception.IllegalInputException;
-import com.chrispbacon.chrispbaconend.model.AnswersDto;
+import com.chrispbacon.chrispbaconend.model.answer.AnswersDto;
 import com.chrispbacon.chrispbaconend.model.CorrectionDto;
 import com.chrispbacon.chrispbaconend.repository.AnswerRepository;
 import lombok.RequiredArgsConstructor;

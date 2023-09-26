@@ -1,5 +1,6 @@
 package com.chrispbacon.chrispbaconend.model;
 
+import com.chrispbacon.chrispbaconend.model.category.Category;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;

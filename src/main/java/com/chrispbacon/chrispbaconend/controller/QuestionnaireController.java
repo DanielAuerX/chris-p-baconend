@@ -1,6 +1,6 @@
 package com.chrispbacon.chrispbaconend.controller;
 
-import com.chrispbacon.chrispbaconend.model.AnswersDto;
+import com.chrispbacon.chrispbaconend.model.answer.AnswersDto;
 import com.chrispbacon.chrispbaconend.model.CorrectionDto;
 import com.chrispbacon.chrispbaconend.service.CorrectionService;
 import com.chrispbacon.chrispbaconend.service.QuestionService;
@@ -30,7 +30,7 @@ public class QuestionnaireController {
     }
 
     @GetMapping("/correction")
-    public ResponseEntity<Object> getQuestion(@RequestBody AnswersDto answersDto) {
+    public ResponseEntity<Object> validateQuestion(@RequestBody AnswersDto answersDto) {
         CorrectionDto correction = correctionService.evaluateAnswers(answersDto);
         return ResponseEntity.ok(correction);
     }

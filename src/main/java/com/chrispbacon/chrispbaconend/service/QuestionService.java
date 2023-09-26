@@ -1,7 +1,7 @@
 package com.chrispbacon.chrispbaconend.service;
 
 import com.chrispbacon.chrispbaconend.exception.IllegalInputException;
-import com.chrispbacon.chrispbaconend.model.Answer;
+import com.chrispbacon.chrispbaconend.model.answer.Answer;
 import com.chrispbacon.chrispbaconend.model.Question;
 import com.chrispbacon.chrispbaconend.model.QuestionDto;
 import com.chrispbacon.chrispbaconend.repository.AnswerRepository;

@@ -20,7 +20,7 @@ import java.io.IOException;
 @CrossOrigin
 public class AuthenticationController {
 
-    private final AuthenticationService service;
+    private final AuthenticationService authenticationService;
 
     private final JwtService jwtService;
 
@@ -28,20 +28,20 @@ public class AuthenticationController {
     public ResponseEntity<Object> register(
             @RequestBody RegisterRequest request
     ) {
-        if (service.checkIfEmailExists(request)) {
+        if (authenticationService.checkIfEmailExists(request)) {
             return ResponseEntity.status(409).body("Email already exists!");
         }
-        if (service.checkIfUserNameExists(request)) {
+        if (authenticationService.checkIfUserNameExists(request)) {
             return ResponseEntity.status(409).body("Username already exists!");
         }
-        return ResponseEntity.ok(service.register(request));
+        return ResponseEntity.ok(authenticationService.register(request));
     }
 
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(
             @RequestBody AuthenticationRequest request
     ) {
-        return ResponseEntity.ok(service.authenticate(request));
+        return ResponseEntity.ok(authenticationService.authenticate(request));
     }
 
     @PostMapping("/refresh-token")
@@ -49,7 +49,7 @@ public class AuthenticationController {
             HttpServletRequest request,
             HttpServletResponse response
     ) throws IOException {
-        service.refreshToken(request, response);
+        authenticationService.refreshToken(request, response);
     }
 
     @PostMapping("/validate-token")

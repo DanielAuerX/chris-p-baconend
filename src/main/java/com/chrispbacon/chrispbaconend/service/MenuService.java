@@ -1,6 +1,6 @@
 package com.chrispbacon.chrispbaconend.service;
 
-import com.chrispbacon.chrispbaconend.model.Category;
+import com.chrispbacon.chrispbaconend.model.category.Category;
 import com.chrispbacon.chrispbaconend.model.LearningField;
 import com.chrispbacon.chrispbaconend.model.menu.CategoryDto;
 import com.chrispbacon.chrispbaconend.model.menu.OverviewDto;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor

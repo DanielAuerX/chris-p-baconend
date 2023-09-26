@@ -1,4 +1,4 @@
-package com.chrispbacon.chrispbaconend.model;
+package com.chrispbacon.chrispbaconend.model.answer;
 
 import java.util.List;
 import java.util.UUID;
