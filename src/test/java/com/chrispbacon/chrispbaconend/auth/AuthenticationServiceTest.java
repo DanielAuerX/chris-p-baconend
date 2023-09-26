@@ -1,10 +1,10 @@
 package com.chrispbacon.chrispbaconend.auth;
 
-import com.chrispbacon.chrispbaconend.auth.token.Token;
-import com.chrispbacon.chrispbaconend.auth.token.TokenRepository;
 import com.chrispbacon.chrispbaconend.config.JwtService;
+import com.chrispbacon.chrispbaconend.model.token.Token;
 import com.chrispbacon.chrispbaconend.model.user.Role;
 import com.chrispbacon.chrispbaconend.model.user.Student;
+import com.chrispbacon.chrispbaconend.repository.TokenRepository;
 import com.chrispbacon.chrispbaconend.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,7 +20,8 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -38,7 +39,6 @@ class AuthenticationServiceTest {
     private JwtService jwtService;
     @Mock
     private AuthenticationManager authenticationManager;
-
     @InjectMocks
     private AuthenticationService authenticationService;
 
