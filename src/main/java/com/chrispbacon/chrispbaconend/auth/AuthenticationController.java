@@ -29,10 +29,10 @@ public class AuthenticationController {
             @RequestBody RegisterRequest request
     ) {
         if (service.checkIfEmailExists(request)) {
-            return ResponseEntity.status(409).body("Email exists already!");
+            return ResponseEntity.status(409).body("Email already exists!");
         }
         if (service.checkIfUserNameExists(request)) {
-            return ResponseEntity.status(409).body("User name exists already!");
+            return ResponseEntity.status(409).body("Username already exists!");
         }
         return ResponseEntity.ok(service.register(request));
     }

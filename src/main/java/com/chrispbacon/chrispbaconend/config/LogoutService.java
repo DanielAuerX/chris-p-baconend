@@ -1,6 +1,6 @@
 package com.chrispbacon.chrispbaconend.config;
 
-import com.chrispbacon.chrispbaconend.auth.token.TokenRepository;
+import com.chrispbacon.chrispbaconend.repository.TokenRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;

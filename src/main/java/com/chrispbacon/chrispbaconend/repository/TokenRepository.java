@@ -1,9 +1,10 @@
-package com.chrispbacon.chrispbaconend.auth.token;
+package com.chrispbacon.chrispbaconend.repository;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import com.chrispbacon.chrispbaconend.model.token.Token;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

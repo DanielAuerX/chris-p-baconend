@@ -1,13 +1,13 @@
 package com.chrispbacon.chrispbaconend.auth;
 
 
-import com.chrispbacon.chrispbaconend.auth.token.Token;
-import com.chrispbacon.chrispbaconend.auth.token.TokenRepository;
-import com.chrispbacon.chrispbaconend.auth.token.TokenType;
 import com.chrispbacon.chrispbaconend.config.JwtService;
+import com.chrispbacon.chrispbaconend.model.token.Token;
+import com.chrispbacon.chrispbaconend.model.token.TokenType;
 import com.chrispbacon.chrispbaconend.model.user.Role;
 import com.chrispbacon.chrispbaconend.model.user.Student;
 import com.chrispbacon.chrispbaconend.model.user.UserDto;
+import com.chrispbacon.chrispbaconend.repository.TokenRepository;
 import com.chrispbacon.chrispbaconend.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
@@ -53,12 +53,13 @@ public class AuthenticationService {
     public boolean checkIfEmailExists(RegisterRequest request) {
         return userRepository.findByEmail(request.getEmail()).isPresent();
     }
+
     public boolean checkIfUserNameExists(RegisterRequest request) {
         return userRepository.findByUserName(request.getUserName()).isPresent();
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
-        authenticationManager.authenticate(
+        authenticationManager.authenticate( //compares hashed db pw with hashed provided pw; BadCredentialsException handled
                 new UsernamePasswordAuthenticationToken(
                         request.getUserName(),
                         request.getPassword()
@@ -105,19 +106,19 @@ public class AuthenticationService {
     }
 
     public void refreshToken(
-            HttpServletRequest request,
-            HttpServletResponse response
+            HttpServletRequest httpServletRequest,
+            HttpServletResponse httpServletResponse
     ) throws IOException {
-        final String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
+        final String authHeader = httpServletRequest.getHeader(HttpHeaders.AUTHORIZATION);
         final String refreshToken;
-        final String userEmail;
+        final String userName;
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             return;
         }
         refreshToken = authHeader.substring(7);
-        userEmail = jwtService.extractUsername(refreshToken);
-        if (userEmail != null) {
-            var user = this.userRepository.findByEmail(userEmail)
+        userName = jwtService.extractUsername(refreshToken);
+        if (userName != null) {
+            var user = this.userRepository.findByUserName(userName)
                     .orElseThrow();
             if (jwtService.isTokenValid(refreshToken, user)) {
                 var accessToken = jwtService.generateToken(user);
@@ -127,8 +128,9 @@ public class AuthenticationService {
                         .accessToken(accessToken)
                         .refreshToken(refreshToken)
                         .build();
-                new ObjectMapper().writeValue(response.getOutputStream(), authResponse);
+                new ObjectMapper().writeValue(httpServletResponse.getOutputStream(), authResponse);
             }
         }
     }
+
 }

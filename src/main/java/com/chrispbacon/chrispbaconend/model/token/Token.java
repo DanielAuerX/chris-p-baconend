@@ -1,4 +1,4 @@
-package com.chrispbacon.chrispbaconend.auth.token;
+package com.chrispbacon.chrispbaconend.model.token;
 
 import com.chrispbacon.chrispbaconend.model.user.Student;
 import jakarta.persistence.Column;

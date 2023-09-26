@@ -1,6 +1,6 @@
 package com.chrispbacon.chrispbaconend.config;
 
-import com.chrispbacon.chrispbaconend.auth.token.TokenRepository;
+import com.chrispbacon.chrispbaconend.repository.TokenRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
