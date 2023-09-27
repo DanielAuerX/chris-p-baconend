@@ -1,4 +1,4 @@
-package com.chrispbacon.chrispbaconend.model;
+package com.chrispbacon.chrispbaconend.model.question;
 
 import com.chrispbacon.chrispbaconend.model.answer.Answer;
 

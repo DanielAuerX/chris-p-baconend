@@ -1,7 +1,7 @@
 package com.chrispbacon.chrispbaconend.service;
 
-import com.chrispbacon.chrispbaconend.model.category.Category;
 import com.chrispbacon.chrispbaconend.model.LearningField;
+import com.chrispbacon.chrispbaconend.model.category.Category;
 import com.chrispbacon.chrispbaconend.model.menu.CategoryDto;
 import com.chrispbacon.chrispbaconend.model.menu.OverviewDto;
 import com.chrispbacon.chrispbaconend.repository.CategoryRepository;
@@ -30,5 +30,9 @@ public class MenuService {
             overview.add(new OverviewDto(learningField, categoriesDto));
         }
         return overview;
+    }
+
+    public Category getCategory(long categoryId){
+        return categoryRepository.findById(categoryId).orElseThrow();
     }
 }

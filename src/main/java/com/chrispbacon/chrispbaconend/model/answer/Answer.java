@@ -1,18 +1,20 @@
 package com.chrispbacon.chrispbaconend.model.answer;
 
-import com.chrispbacon.chrispbaconend.model.Question;
+import com.chrispbacon.chrispbaconend.model.question.Question;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
 @Data
 @Entity
-@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 public class Answer {
 
     @Id
@@ -22,4 +24,5 @@ public class Answer {
     private Question question;
     private String answer;
     private boolean correct;
+
 }

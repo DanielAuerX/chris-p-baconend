@@ -1,17 +1,20 @@
-package com.chrispbacon.chrispbaconend.model;
+package com.chrispbacon.chrispbaconend.model.question;
 
+import com.chrispbacon.chrispbaconend.model.LearningField;
 import com.chrispbacon.chrispbaconend.model.category.Category;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
 @Data
 @Entity
-@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 public class Question {
 
     @Id
