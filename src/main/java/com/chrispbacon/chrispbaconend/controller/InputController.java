@@ -1,5 +1,6 @@
 package com.chrispbacon.chrispbaconend.controller;
 
+import com.chrispbacon.chrispbaconend.model.QuestionAnswerInputRequest;
 import com.chrispbacon.chrispbaconend.model.category.CategoryInputRequest;
 import com.chrispbacon.chrispbaconend.service.InputService;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,12 @@ public class InputController {
     @PostMapping("/category")
     public ResponseEntity<Object> validateQuestion(@RequestBody CategoryInputRequest categoryInputRequest) {
         CategoryInputRequest savedRequest = inputService.insertIntoCategoryRequest(categoryInputRequest);
+        return ResponseEntity.ok(savedRequest);
+    }
+
+    @PostMapping("/qa")
+    public ResponseEntity<Object> validateQuestion(@RequestBody QuestionAnswerInputRequest questionAnswerInputRequest) {
+        QuestionAnswerInputRequest savedRequest = inputService.insertQARequest(questionAnswerInputRequest);
         return ResponseEntity.ok(savedRequest);
     }
 }
