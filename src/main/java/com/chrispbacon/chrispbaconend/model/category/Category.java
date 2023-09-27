@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 @Entity
 @RequiredArgsConstructor
 public class Category {
+    public static final int MAX_TEXT_LENGTH = 1000;
 
     @Id
     private long id;
@@ -19,6 +20,6 @@ public class Category {
     private LearningField learningField;
     private String name;
     private String description;
-    @Column(length = 1000)
+    @Column(length = MAX_TEXT_LENGTH)
     private String text;
 }

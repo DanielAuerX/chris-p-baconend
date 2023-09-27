@@ -3,9 +3,11 @@ package com.chrispbacon.chrispbaconend.service;
 import com.chrispbacon.chrispbaconend.exception.IllegalInputException;
 import com.chrispbacon.chrispbaconend.model.QuestionAnswerInputRequest;
 import com.chrispbacon.chrispbaconend.model.answer.AnswerInputRequest;
+import com.chrispbacon.chrispbaconend.model.category.Category;
 import com.chrispbacon.chrispbaconend.model.category.CategoryInputRequest;
 import com.chrispbacon.chrispbaconend.repository.AnswerRequestRepository;
 import com.chrispbacon.chrispbaconend.repository.CategoryRequestRepository;
+import com.chrispbacon.chrispbaconend.repository.LearningFieldRepository;
 import com.chrispbacon.chrispbaconend.repository.QuestionRequestRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,13 +21,25 @@ public class InputService {
     private final CategoryRequestRepository categoryRequestRepository;
     private final QuestionRequestRepository questionRequestRepository;
     private final AnswerRequestRepository answerRequestRepository;
+    private final LearningFieldRepository learningFieldRepository;
 
-    public CategoryInputRequest insertIntoCategoryRequest(CategoryInputRequest categoryInputRequest) {
+    public CategoryInputRequest saveCategoryRequest(CategoryInputRequest categoryInputRequest) {
+        validateCategoryRequest(categoryInputRequest);
         return categoryRequestRepository.save(categoryInputRequest);
     }
 
-    public QuestionAnswerInputRequest insertQARequest(QuestionAnswerInputRequest questionAnswerInputRequest) {
-        validateRequest(questionAnswerInputRequest);
+    private void validateCategoryRequest(CategoryInputRequest categoryInputRequest) {
+        learningFieldRepository.findById(categoryInputRequest.getLearningFieldId()).orElseThrow(() -> new IllegalInputException("Learning field does not exist."));
+        if (categoryInputRequest.getCategoryName() == null || categoryInputRequest.getCategoryDescription() == null || categoryInputRequest.getCategoryText() == null) {
+            throw new IllegalInputException("Provide a category name, description and text.");
+        }
+        if ( categoryInputRequest.getCategoryText().length() > Category.MAX_TEXT_LENGTH) {
+            throw new IllegalInputException("Text can not contain more than " + Category.MAX_TEXT_LENGTH + " characters.");
+        }
+    }
+
+    public QuestionAnswerInputRequest saveQARequest(QuestionAnswerInputRequest questionAnswerInputRequest) {
+        validateQARequest(questionAnswerInputRequest);
         QuestionAnswerInputRequest savedRequest = questionRequestRepository.save(questionAnswerInputRequest);
         for (AnswerInputRequest answerOption : savedRequest.getAnswerOptions()) {
             answerOption.setQuestionAnswerRequest(savedRequest);
@@ -34,7 +48,7 @@ public class InputService {
         return savedRequest;
     }
 
-    private void validateRequest(QuestionAnswerInputRequest questionAnswerInputRequest) {
+    private void validateQARequest(QuestionAnswerInputRequest questionAnswerInputRequest) {
         if (questionAnswerInputRequest == null) {
             throw new IllegalInputException("Enter a question and answers!");
         }
@@ -46,7 +60,7 @@ public class InputService {
         }
         if (questionAnswerInputRequest.getAnswerOptions() == null
             || questionAnswerInputRequest.getAnswerOptions().size() < 3
-            || questionAnswerInputRequest.getAnswerOptions().stream().noneMatch(AnswerInputRequest::isCorrect)){
+            || questionAnswerInputRequest.getAnswerOptions().stream().noneMatch(AnswerInputRequest::isCorrect)) {
             throw new IllegalInputException("Enter at least three answer options. At least one of the answers has to be correct.");
         }
     }

@@ -21,13 +21,13 @@ public class InputController {
 
     @PostMapping("/category")
     public ResponseEntity<Object> validateQuestion(@RequestBody CategoryInputRequest categoryInputRequest) {
-        CategoryInputRequest savedRequest = inputService.insertIntoCategoryRequest(categoryInputRequest);
+        CategoryInputRequest savedRequest = inputService.saveCategoryRequest(categoryInputRequest);
         return ResponseEntity.ok(savedRequest);
     }
 
     @PostMapping("/qa")
     public ResponseEntity<Object> validateQuestion(@RequestBody QuestionAnswerInputRequest questionAnswerInputRequest) {
-        QuestionAnswerInputRequest savedRequest = inputService.insertQARequest(questionAnswerInputRequest);
+        QuestionAnswerInputRequest savedRequest = inputService.saveQARequest(questionAnswerInputRequest);
         return ResponseEntity.ok(savedRequest);
     }
 }
