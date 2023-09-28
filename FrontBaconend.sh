@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Starting the Chris P Bacon script..."
+echo "Starting the FrontBaconend script..."
 container_name="bacon"
 
 # check if daemon is running
@@ -59,4 +59,4 @@ echo "Frontend started! Visit http://localhost:5173"
 sleep 3
 open 'http://localhost:5173'
 
-echo "Finished the ScooTeq script"
+echo "Finished the FrontBaconend script"
