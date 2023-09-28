@@ -1,6 +1,6 @@
 package com.chrispbacon.chrispbaconend.model.answer;
 
-import com.chrispbacon.chrispbaconend.model.QuestionAnswerInputRequest;
+import com.chrispbacon.chrispbaconend.model.question.QuestionInputRequest;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -21,15 +21,15 @@ public class AnswerInputRequest {
     private String answer;
     private boolean correct;
     @ManyToOne
-    @JoinColumn(name = "question_answer_request_id")
-    private QuestionAnswerInputRequest questionAnswerRequest;
+    @JoinColumn(name = "question_request_id")
+    private QuestionInputRequest questionInputRequest;
 
     public AnswerInputRequest(String answer, boolean correct) {
         this.answer = answer;
         this.correct = correct;
     }
 
-    public void setQuestionAnswerRequest(QuestionAnswerInputRequest questionAnswerRequest) {
-        this.questionAnswerRequest = questionAnswerRequest;
+    public void setQuestionAnswerRequest(QuestionInputRequest questionInputRequest) {
+        this.questionInputRequest = questionInputRequest;
     }
 }
