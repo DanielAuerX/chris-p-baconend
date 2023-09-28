@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CategoryInputRequest {
     @Id
-    @GeneratedValue(generator = "c_request_seq")
+    @GeneratedValue(generator = "category_seq")
     private Long id;
     private Long learningFieldId;
     private String categoryName;
