@@ -20,7 +20,7 @@ public class QuestionService {
     public QuestionDto getQuestionWithAnswers(Long category_id) {
         Question randomQuestion = questionRepository.findRandomQuestionByCategoryId(category_id);
         if (randomQuestion == null) {
-            throw new IllegalInputException("The category id " + category_id + " does not exist! Please get your ducks in a row before you execute the next request.");
+            throw new IllegalInputException("There are no questions linked to category id " + category_id + "! Please get your ducks in a row before you execute the next request.");
         }
         List<Answer> answers = answerRepository.findAnswersByQuestionId(randomQuestion.getId());
         return new QuestionDto(randomQuestion, answers);
