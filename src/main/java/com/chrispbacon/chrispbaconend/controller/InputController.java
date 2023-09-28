@@ -26,7 +26,7 @@ public class InputController {
 
     public InputController(InputService inputService) {
         this.inputService = inputService;
-        Bandwidth limit = Bandwidth.classic(2, Refill.greedy(2, Duration.ofMinutes(1)));
+        Bandwidth limit = Bandwidth.classic(10, Refill.greedy(10, Duration.ofMinutes(5)));
         this.bucket = Bucket.builder()
                 .addLimit(limit)
                 .build();
@@ -34,13 +34,15 @@ public class InputController {
 
     @PostMapping("/category")
     public ResponseEntity<Object> validateQuestion(@RequestBody CategoryInputRequest categoryInputRequest) {
-        CategoryInputRequest savedRequest = inputService.saveCategoryRequest(categoryInputRequest);
-        return ResponseEntity.ok(savedRequest);
+        if (bucket.tryConsume(1)) {
+            return ResponseEntity.ok(inputService.saveCategoryRequest(categoryInputRequest));
+        }
+        return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).build();
     }
 
     @PostMapping("/qa")
     public ResponseEntity<Object> validateQuestion(@RequestBody QuestionAnswerInputRequest questionAnswerInputRequest) {
-        if (bucket.tryConsume(1)){
+        if (bucket.tryConsume(1)) {
             long id = inputService.saveQARequest(questionAnswerInputRequest);
             return ResponseEntity.ok("Saved request with id " + id + ".");
         }
