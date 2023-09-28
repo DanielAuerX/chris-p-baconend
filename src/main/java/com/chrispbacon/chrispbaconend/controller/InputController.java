@@ -2,7 +2,6 @@ package com.chrispbacon.chrispbaconend.controller;
 
 import com.chrispbacon.chrispbaconend.model.InputSetRequest;
 import com.chrispbacon.chrispbaconend.model.QuestionAnswerInputRequest;
-import com.chrispbacon.chrispbaconend.model.category.CategoryInputRequest;
 import com.chrispbacon.chrispbaconend.service.InputService;
 import io.github.bucket4j.Bandwidth;
 import io.github.bucket4j.Bucket;
@@ -27,7 +26,7 @@ public class InputController {
 
     public InputController(InputService inputService) {
         this.inputService = inputService;
-        Bandwidth limit = Bandwidth.classic(10, Refill.greedy(10, Duration.ofMinutes(5)));
+        Bandwidth limit = Bandwidth.classic(10, Refill.greedy(10, Duration.ofMinutes(1)));
         this.bucket = Bucket.builder()
                 .addLimit(limit)
                 .build();
@@ -35,8 +34,8 @@ public class InputController {
 
     @PostMapping("/category")
     public ResponseEntity<Object> receiveCategoryRequest(@RequestBody InputSetRequest inputSetRequest) {
-        if (bucket.tryConsume(1)) {
-            long id = inputService.saveCategoryRequest(inputSetRequest);
+        if (bucket.tryConsume(5)) {
+            long id = inputService.handleCategoryRequest(inputSetRequest);
             return ResponseEntity.ok("Saved category request with id " + id + ".");
         }
         return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).build();
@@ -45,7 +44,7 @@ public class InputController {
     @PostMapping("/qa")
     public ResponseEntity<Object> receiveQuestionRequest(@RequestBody QuestionAnswerInputRequest questionAnswerInputRequest) {
         if (bucket.tryConsume(1)) {
-            long id = inputService.saveQARequest(questionAnswerInputRequest);
+            long id = inputService.handleQARequest(questionAnswerInputRequest);
             return ResponseEntity.ok("Saved question request with id " + id + ".");
         }
         return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).build();

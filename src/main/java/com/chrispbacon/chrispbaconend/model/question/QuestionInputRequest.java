@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class QuestionInputRequest {
     @Id
-    @GeneratedValue(generator = "qa_request_seq")
+    @GeneratedValue(generator = "question_seq")
     private Long id;
     private Long categoryId;
     private String question;

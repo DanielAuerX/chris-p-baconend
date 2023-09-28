@@ -12,12 +12,10 @@ import com.chrispbacon.chrispbaconend.repository.CategoryRequestRepository;
 import com.chrispbacon.chrispbaconend.repository.LearningFieldRepository;
 import com.chrispbacon.chrispbaconend.repository.QuestionRequestRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-@Slf4j
 public class InputService {
 
     private final CategoryRequestRepository categoryRequestRepository;
@@ -25,29 +23,44 @@ public class InputService {
     private final AnswerRequestRepository answerRequestRepository;
     private final LearningFieldRepository learningFieldRepository;
 
-    public long saveCategoryRequest(InputSetRequest inputSetRequest) {
-        CategoryInputRequest categoryInputRequest = new CategoryInputRequest(inputSetRequest.learningFieldId(), inputSetRequest.categoryName(), inputSetRequest.categoryDescription(), inputSetRequest.categoryText());
+    public long handleCategoryRequest(InputSetRequest inputSetRequest) {
+        CategoryInputRequest categoryInputRequest = generateCategoryInputRequest(inputSetRequest);
         validateRequest(inputSetRequest, categoryInputRequest);
         return saveRequest(inputSetRequest, categoryInputRequest);
     }
 
+    private CategoryInputRequest generateCategoryInputRequest(InputSetRequest inputSetRequest) {
+        return new CategoryInputRequest(inputSetRequest.learningFieldId(),
+                inputSetRequest.categoryName(),
+                inputSetRequest.categoryDescription(),
+                inputSetRequest.categoryText());
+    }
+
     private long saveRequest(InputSetRequest inputSetRequest, CategoryInputRequest categoryInputRequest) {
-        CategoryInputRequest savedCategory = categoryRequestRepository.save(categoryInputRequest);
+        CategoryInputRequest savedCategoryRequest = categoryRequestRepository.save(categoryInputRequest);
         for (QuestionAnswerInputRequest questionAnswerInputRequest : inputSetRequest.questions()) {
+            questionAnswerInputRequest.setCategoryId(savedCategoryRequest.getId());
             QuestionInputRequest savedQuestion = saveQuestionRequest(questionAnswerInputRequest);
             saveAnswerRequests(questionAnswerInputRequest, savedQuestion);
         }
-        return savedCategory.getId();
+        return savedCategoryRequest.getId();
     }
 
     private void validateRequest(InputSetRequest inputSetRequest, CategoryInputRequest categoryInputRequest) {
-        validateCategoryRequest(categoryInputRequest);
+        validateCategory(categoryInputRequest);
+        validateQuestions(inputSetRequest);
+    }
+
+    private void validateQuestions(InputSetRequest inputSetRequest) {
+        if (inputSetRequest.questions().size() < 3) {
+            throw new IllegalInputException("Provide at least three questions (with answers).");
+        }
         for (QuestionAnswerInputRequest questionAnswerInputRequest : inputSetRequest.questions()) {
             validateQARequest(questionAnswerInputRequest, false);
         }
     }
 
-    private void validateCategoryRequest(CategoryInputRequest categoryInputRequest) {
+    private void validateCategory(CategoryInputRequest categoryInputRequest) {
         learningFieldRepository.findById(categoryInputRequest.getLearningFieldId()).orElseThrow(() -> new IllegalInputException("Learning field does not exist."));
         if (categoryInputRequest.getCategoryName() == null || categoryInputRequest.getCategoryDescription() == null || categoryInputRequest.getCategoryText() == null) {
             throw new IllegalInputException("Provide a category name, description and text.");
@@ -57,7 +70,7 @@ public class InputService {
         }
     }
 
-    public long saveQARequest(QuestionAnswerInputRequest questionAnswerInputRequest) {
+    public long handleQARequest(QuestionAnswerInputRequest questionAnswerInputRequest) {
         validateQARequest(questionAnswerInputRequest, true);
         QuestionInputRequest savedQuestion = saveQuestionRequest(questionAnswerInputRequest);
         saveAnswerRequests(questionAnswerInputRequest, savedQuestion);
