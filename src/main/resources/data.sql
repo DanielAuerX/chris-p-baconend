@@ -33,9 +33,6 @@ insert into category (id, learning_field_id, name, description, text) values (11
   </ul>
 
   <p>Das Verständnis dieser Strukturen und Typen von Unternehmen ist entscheidend, da sie die Art und Weise beeinflussen, wie Unternehmen geführt werden, wie Entscheidungen getroffen werden und wie sie im Markt agieren. Durch das Kennenlernen dieser Konzepte können Sie ein tieferes Verständnis für die Geschäftswelt entwickeln und besser in Ihrer Rolle im Unternehmen agieren.</p>
-
-Collapse
-message.txt3 KB
 ');
 insert into category (id, learning_field_id, name, description, text) values (12, 1, 'Unternehmensziele und -werte kennenlernen', 'Die Ziele und Werte des Unternehmens verstehen', 'Text, text, text.');
 insert into category (id, learning_field_id, name, description, text) values (13, 1, 'Die eigene Rolle im Unternehmen definieren', 'Die persönliche Rolle im Unternehmen klären', 'Text, text, text.');

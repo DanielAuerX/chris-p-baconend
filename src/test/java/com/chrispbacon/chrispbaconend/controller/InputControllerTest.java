@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class InputControllerTest {
 
     @Test
-    void name() {
+    void tenTokenPerMinute() {
         Refill refill = Refill.intervally(10, Duration.ofMinutes(1));  //refills bucket every minute with 10 toekn
         Bandwidth limit = Bandwidth.classic(10, refill);        // capacity of bucket and rate of refill
         Bucket bucket = Bucket.builder()
