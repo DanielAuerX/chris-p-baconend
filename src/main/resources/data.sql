@@ -8,6 +8,7 @@ insert into category (id, learning_field_id, name, description, text) values (30
 insert into category (id, learning_field_id, name, description, text) values (31, 3, 'Buy or Lease', 'Buy or Lease... das ist die Frage', 'Text, text , text .Zusätzliche Resourcen: https://google.com');
 insert into category (id, learning_field_id, name, description, text) values (32, 3, 'IPv4', 'Eigenschaften von IPv4', 'Text, text , text .Zusätzliche Resourcen: https://google.com');
 insert into question (id, category_id, learning_field_id, question) values ('4a3318b5-3a02-400b-9807-730962452fa7', 20, 2, 'Welche ist die korrekte Formel um elektrische Arbeit W zu berechnen?');
+insert into question (id, category_id, learning_field_id, question) values ('4a3318b4-3a02-400b-9807-730962452fa6', 20, 2, 'Wann ist der Input?');
 
 -- Learning Field 1: Das Unternehmen und die eigene Rolle im Betrieb beschreiben
 insert into category (id, learning_field_id, name, description, text) values (11, 1, 'Unternehmensstruktur verstehen', 'Die Struktur des Unternehmens kennenlernen', '<h3>Unternehmensstrukturen und -typen: Eine Einführung</h3>
@@ -80,6 +81,9 @@ insert into category (id, learning_field_id, name, description, text) values (50
 insert into answer (id, question_id, answer, correct) values ('bd3528e7-5b4e-42ce-885a-5ed904184cf3', '4a3318b5-3a02-400b-9807-730962452fa7', 'W = Q * U (Elektrische Arbeit W = Elektrizitätsmenge Q * Elektrische Spannung U)', true);
 insert into answer (id, question_id, answer, correct) values ('de22a094-279e-4aa5-988e-c042a7d50cfd', '4a3318b5-3a02-400b-9807-730962452fa7', 'W = U / Q (Elektrische Arbeit W = Elektrische Spannung U / Elektrizitätsmenge Q)', false);
 insert into answer (id, question_id, answer, correct) values ('98481cc6-788a-46ae-9f3a-5b127a3d1ad0', '4a3318b5-3a02-400b-9807-730962452fa7', 'W = Q + A (Elektrische Arbeit W = Elektrizitätsmenge Q + Ampere A)', false);
+insert into answer (id, question_id, answer, correct) values ('88481cc6-788a-46ae-9f3a-5b127a3d1ad1', '4a3318b4-3a02-400b-9807-730962452fa6', 'Timo', false);
+insert into answer (id, question_id, answer, correct) values ('de22a094-788a-46ae-9f3a-5b127a3d1ad1', '4a3318b4-3a02-400b-9807-730962452fa6', 'Toni', false);
+insert into answer (id, question_id, answer, correct) values ('de22a094-788a-46ae-9f3a-5b127a3d1ad0', '4a3318b4-3a02-400b-9807-730962452fa6', 'Ezekiel', true);
 insert into student (id, email, user_name, password, first_name, last_name, role) values ('98481cc6-788a-46ae-9f3a-5b127a3d1ab1', 'timon@web.de', 'todesTimonOfDeath', 'ilovefrontend', 'Timon', 'Reiswaffel', 0);
 insert into student_finished_categories (finished_categories, student_id) values (20, '98481cc6-788a-46ae-9f3a-5b127a3d1ab1');
 insert into student_finished_categories (finished_categories, student_id) values (32, '98481cc6-788a-46ae-9f3a-5b127a3d1ab1');
