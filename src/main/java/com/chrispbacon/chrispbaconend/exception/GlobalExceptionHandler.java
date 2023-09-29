@@ -13,11 +13,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     //https://www.baeldung.com/exception-handling-for-rest-with-spring
 
-    //        @ExceptionHandler({RuntimeException.class})
-//        protected ResponseEntity<Object> handleRuntimeException(RuntimeException ex) {
-//            log.info("Following response was sent: " + ex.getMessage());
-//            return ResponseEntity.badRequest().body(ex.getMessage());
-//        }
     @ExceptionHandler({IllegalInputException.class})
     protected ResponseEntity<Object> handleWrongInputException(IllegalInputException ex) {
         log.info(ex.getMessage());
@@ -29,12 +24,5 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         log.info(ex.getMessage());
         return ResponseEntity.status(401).body("Username and/or password is incorrect! Please, get your ducks in a row.");
     }
-
-
-    //@ExceptionHandler({MethodArgumentNotValidException.class})
-    //public ResponseEntity<Object> handleNullArguments(MethodArgumentNotValidException ex) {
-    //    log.error(ex.getMessage());
-    //    return ResponseEntity.status(400).body("You have to enter the right parameters!");
-    //}
 
 }

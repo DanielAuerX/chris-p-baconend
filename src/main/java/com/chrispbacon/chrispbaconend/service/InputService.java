@@ -52,8 +52,8 @@ public class InputService {
     }
 
     private void validateQuestions(InputSetRequest inputSetRequest) {
-        if (inputSetRequest.questions().size() < 3) {
-            throw new IllegalInputException("Provide at least three questions (with answers).");
+        if (inputSetRequest.questions().size() < 3 || inputSetRequest.questions().size() > 30) {
+            throw new IllegalInputException("Provide at least three and a maximum of 30 questions (with answers).");
         }
         for (QuestionAnswerInputRequest questionAnswerInputRequest : inputSetRequest.questions()) {
             validateQARequest(questionAnswerInputRequest, false);

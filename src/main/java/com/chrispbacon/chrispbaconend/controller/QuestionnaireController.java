@@ -29,6 +29,11 @@ public class QuestionnaireController {
         return ResponseEntity.ok(questionService.getQuestionWithAnswers(categoryId));
     }
 
+    @GetMapping("/questions")
+    public ResponseEntity<Object> getQuestionsWithAnswers(@RequestParam Long categoryId) {
+        return ResponseEntity.ok(questionService.getQuestionsWithAnswers(categoryId));
+    }
+
     @GetMapping("/correction")
     public ResponseEntity<Object> validateQuestion(@RequestBody AnswersDto answersDto) {
         CorrectionDto correction = correctionService.evaluateAnswers(answersDto);

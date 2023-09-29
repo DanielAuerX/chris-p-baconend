@@ -10,7 +10,33 @@ insert into category (id, learning_field_id, name, description, text) values (32
 insert into question (id, category_id, learning_field_id, question) values ('4a3318b5-3a02-400b-9807-730962452fa7', 20, 2, 'Welche ist die korrekte Formel um elektrische Arbeit W zu berechnen?');
 
 -- Learning Field 1: Das Unternehmen und die eigene Rolle im Betrieb beschreiben
-insert into category (id, learning_field_id, name, description, text) values (11, 1, 'Unternehmensstruktur verstehen', 'Die Struktur des Unternehmens kennenlernen', 'Text, text, text.');
+insert into category (id, learning_field_id, name, description, text) values (11, 1, 'Unternehmensstruktur verstehen', 'Die Struktur des Unternehmens kennenlernen', '<h3>Unternehmensstrukturen und -typen: Eine Einführung</h3>
+  <p>Das Verständnis von Unternehmensstrukturen und -typen ist von grundlegender Bedeutung, um die Arbeitsweise und Organisation von Unternehmen zu durchdringen. In diesem Lernfeld werden die verschiedenen Facetten der Unternehmenswelt beleuchtet, um Ihnen einen Einblick in die Vielfalt der Strukturen und Typen von Unternehmen zu bieten.</p>
+
+  <h3>Unternehmensstrukturen:</h3>
+  <p>Unternehmensstrukturen beziehen sich auf die Art und Weise, wie ein Unternehmen intern organisiert ist. Es gibt verschiedene Ansätze, wie Unternehmen ihre internen Hierarchien und Organisationsformen gestalten. Hier sind einige der gängigsten Unternehmensstrukturen:</p>
+
+  <ul>
+    <li><strong>Funktionale Struktur:</strong> In dieser Struktur sind Mitarbeiter nach ihren Funktionen oder Aufgabenbereichen organisiert.</li>
+    <li><strong>Divisionale Struktur:</strong> Bei dieser Struktur wird das Unternehmen in verschiedene Divisionen oder Geschäftseinheiten unterteilt.</li>
+    <li><strong>Matrixstruktur:</strong> Die Matrixstruktur kombiniert Elemente aus beiden Ansätzen.</li>
+    <li><strong>Teamstruktur:</strong> Die Teamstruktur betont die Eigenverantwortung von Teams.</li>
+  </ul>
+
+  <h3>Unternehmensarten:</h3>
+  <p>Neben den Strukturen gibt es verschiedene Unternehmensarten, die sich auf die Rechtsform und Eigentumsverhältnisse beziehen. Hier sind einige Beispiele:</p>
+
+  <ul>
+    <li><strong>Einzelunternehmen:</strong> Ein Einzelunternehmen wird von einer einzigen Person geführt und ist rechtlich nicht von seinem Eigentümer getrennt.</li>
+    <li><strong>Personengesellschaften:</strong> Hier teilen sich mehrere Personen die Eigentümerschaft und die Verantwortung für das Unternehmen.</li>
+    <li><strong>Kapitalgesellschaften:</strong> Kapitalgesellschaften sind rechtlich von ihren Eigentümern getrennt.</li>
+  </ul>
+
+  <p>Das Verständnis dieser Strukturen und Typen von Unternehmen ist entscheidend, da sie die Art und Weise beeinflussen, wie Unternehmen geführt werden, wie Entscheidungen getroffen werden und wie sie im Markt agieren. Durch das Kennenlernen dieser Konzepte können Sie ein tieferes Verständnis für die Geschäftswelt entwickeln und besser in Ihrer Rolle im Unternehmen agieren.</p>
+
+Collapse
+message.txt3 KB
+');
 insert into category (id, learning_field_id, name, description, text) values (12, 1, 'Unternehmensziele und -werte kennenlernen', 'Die Ziele und Werte des Unternehmens verstehen', 'Text, text, text.');
 insert into category (id, learning_field_id, name, description, text) values (13, 1, 'Die eigene Rolle im Unternehmen definieren', 'Die persönliche Rolle im Unternehmen klären', 'Text, text, text.');
 insert into category (id, learning_field_id, name, description, text) values (14, 1, 'Arbeitsrechtliche Grundlagen kennenlernen', 'Grundlegende Arbeitsrechtsaspekte verstehen', 'Text, text, text.');

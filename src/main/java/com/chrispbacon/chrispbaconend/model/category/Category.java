@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 @Entity
 @RequiredArgsConstructor
 public class Category {
-    public static final int MAX_TEXT_LENGTH = 1000;
+    public static final int MAX_TEXT_LENGTH = 4000;
 
     @Id
     @GeneratedValue(generator = "category_seq")
