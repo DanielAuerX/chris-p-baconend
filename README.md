@@ -1,3 +1,12 @@
+# Local development 
+## Dependencies:
++ "Positive and creative mood"
++ Postgres or Docker
++ Java
+
+## Build script
++ run FrontBaconend with the location of the frontend dir as a parameter
+
 # Chris P. Bacon Academy Endpoints
 
 ## `/api/chrispbacon/auth/authenticate` - Authenticate User

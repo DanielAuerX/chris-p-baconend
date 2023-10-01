@@ -51,8 +51,8 @@ docker exec -it "$container_name" psql -U postgres -d "$container_name" -f /tmp/
 
 # start frontend
 echo "Starting frontend..."
-cd eduhub-frontend
-npm start >/dev/null 2>&1 &
+cd $1
+bun run dev >/dev/null 2>&1 &
 cd ..
 sleep 2
 echo "Frontend started! Visit http://localhost:5173"
