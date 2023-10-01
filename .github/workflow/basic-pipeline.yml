@@ -1,0 +1,28 @@
+name: Baconend Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_requests:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout code
+      uses: actions/checkout@v2
+
+    - name: set up java
+      uses: actions/setup-java@v2
+      with:
+        java-version: '17'
+
+    - name: build with gradle
+      run: ./gradlew build
+
+    - name: run project tests
+      run: .gradlew test
