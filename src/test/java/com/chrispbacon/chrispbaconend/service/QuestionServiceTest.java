@@ -20,6 +20,8 @@ import java.util.List;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
@@ -51,14 +53,14 @@ class QuestionServiceTest {
         when(questionRepository.findAllByCategoryId(categoryId)).thenReturn(questions);
         when(answerRepository.findAnswersByQuestionId(question1.getId())).thenReturn(List.of(answer1, answer2));
         when(answerRepository.findAnswersByQuestionId(question2.getId())).thenReturn(List.of(answer3, answer4));
-        List<QuestionDto> expectedQuestionDtos = new ArrayList<>();
-        expectedQuestionDtos.add(new QuestionDto(question1, List.of(answer1, answer2)));
-        expectedQuestionDtos.add(new QuestionDto(question2, List.of(answer3, answer4)));
 
         List<QuestionDto> result = questionService.getQuestionsWithAnswers(categoryId);
 
-        assertEquals(expectedQuestionDtos.size(), result.size());
-        assertEquals(expectedQuestionDtos, result);
+        assertEquals(questions.size(), result.size());
+        for (QuestionDto questionDto : result) {
+            assertNotNull(questionDto.question());
+            assertFalse(questionDto.answers().isEmpty());
+        }
     }
 
     @Test

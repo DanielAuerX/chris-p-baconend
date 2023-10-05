@@ -43,8 +43,9 @@ public class QuestionService {
                 log.warn("No answers have been found for question " + question.getId() +". The question is being skipped.");
                 continue;
             }
-            Collections.shuffle(answers);
-            questionsWithAnswers.add(new QuestionDto(question, answers));
+            List<Answer> mutableAnswersList = new ArrayList<>(answers);
+            Collections.shuffle(mutableAnswersList);
+            questionsWithAnswers.add(new QuestionDto(question, mutableAnswersList));
         }
         return questionsWithAnswers;
     }
