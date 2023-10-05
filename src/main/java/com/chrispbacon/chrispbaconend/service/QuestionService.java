@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -42,6 +43,7 @@ public class QuestionService {
                 log.warn("No answers have been found for question " + question.getId() +". The question is being skipped.");
                 continue;
             }
+            Collections.shuffle(answers);
             questionsWithAnswers.add(new QuestionDto(question, answers));
         }
         return questionsWithAnswers;
@@ -52,6 +54,7 @@ public class QuestionService {
         if (questions == null || questions.isEmpty()) {
             throw new IllegalInputException("There are no questions linked to category id " + category_id + "! Please get your ducks in a row before you execute the next request.");
         }
+        Collections.shuffle(questions);
         return questions;
     }
 }
