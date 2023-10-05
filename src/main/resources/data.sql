@@ -87,3 +87,28 @@ insert into answer (id, question_id, answer, correct) values ('de22a094-788a-46a
 insert into student (id, email, user_name, password, first_name, last_name, role) values ('98481cc6-788a-46ae-9f3a-5b127a3d1ab1', 'timon@web.de', 'todesTimonOfDeath', 'ilovefrontend', 'Timon', 'Reiswaffel', 0);
 insert into student_finished_categories (finished_categories, student_id) values (20, '98481cc6-788a-46ae-9f3a-5b127a3d1ab1');
 insert into student_finished_categories (finished_categories, student_id) values (32, '98481cc6-788a-46ae-9f3a-5b127a3d1ab1');
+
+-- QA's for cat 11
+insert into question (id, category_id, learning_field_id, question) values
+                                                                        ('9b3e5b5d-66a5-4f49-8150-7cbbdf3b652e', 11, 1, 'Was ist das Ziel eines Unternehmens?'),
+                                                                        ('0d9fb1bf-3c90-49d7-8e09-90f8aa18e0e9', 11, 1, 'Was versteht man unter Marktforschung?'),
+                                                                        ('3e4fda7a-8e97-493e-97e1-5fb26f8a0b4f', 11, 1, 'Was ist Outsourcing?'),
+                                                                        ('72c0b5e3-9c8d-47f7-99b5-8c4e0a0e3a0c', 11, 1, 'Was sind die vier Ps des Marketings?'),
+                                                                        ('a9a35210-c204-4a74-93dd-529b67c725fc', 11, 1, 'Was ist die SWOT-Analyse?');
+
+insert into answer (id, question_id, answer, correct) values
+                                                          ('1f78f1c7-998d-45a2-aeff-d6f4c6939877', '9b3e5b5d-66a5-4f49-8150-7cbbdf3b652e', 'Das Ziel eines Unternehmens ist in der Regel die Gewinnerzielung und langfristiges Wachstum.', true),
+                                                          ('b305c7d1-3f2d-4642-b6a7-85077314f3b6', '9b3e5b5d-66a5-4f49-8150-7cbbdf3b652e', 'Das Ziel eines Unternehmens ist die Schaffung von Arbeitsplätzen.', false),
+                                                          ('6ea83ec0-e496-40db-8e9b-71c52cb144e9', '9b3e5b5d-66a5-4f49-8150-7cbbdf3b652e', 'Das Ziel eines Unternehmens ist die Steigerung der Kundenzufriedenheit.', false),
+                                                          ('85759ab9-5b21-4d1f-a9b6-50c743fa0475', '0d9fb1bf-3c90-49d7-8e09-90f8aa18e0e9', 'Marktforschung ist die systematische Erfassung, Analyse und Interpretation von Informationen über Märkte, Kunden und Wettbewerber.', true),
+                                                          ('7f3c2122-8f02-4dfe-841f-cb2c46244bb7', '0d9fb1bf-3c90-49d7-8e09-90f8aa18e0e9', 'Marktforschung ist die Planung von Marketingkampagnen.', false),
+                                                          ('4342c5f1-6f3e-4ed7-97e2-c08f543914fe', '0d9fb1bf-3c90-49d7-8e09-90f8aa18e0e9', 'Marktforschung ist die Preisgestaltung von Produkten.', false),
+                                                          ('f7b29572-ae4a-4e9a-94b2-596dd110b2a2', '3e4fda7a-8e97-493e-97e1-5fb26f8a0b4f', 'Outsourcing ist die Auslagerung von Unternehmensaufgaben oder -funktionen an externe Dienstleister.', true),
+                                                          ('2a0d9fbc-03c9-4cc6-8e66-c84f72d8b315', '3e4fda7a-8e97-493e-97e1-5fb26f8a0b4f', 'Outsourcing ist die interne Umstrukturierung eines Unternehmens.', false),
+                                                          ('1e3c596d-33ed-4eeb-94a1-21d87714c350', '3e4fda7a-8e97-493e-97e1-5fb26f8a0b4f', 'Outsourcing ist die Gründung neuer Tochterunternehmen.', false),
+                                                          ('4a231c9e-347f-4ff1-9e7d-4b6883f7a953', '72c0b5e3-9c8d-47f7-99b5-8c4e0a0e3a0c', 'Die vier Ps des Marketings sind Produkt, Preis, Promotion und Platz (Distribution).', true),
+                                                          ('e0e1a01a-90ea-434e-8b35-6f35e11a201f', '72c0b5e3-9c8d-47f7-99b5-8c4e0a0e3a0c', 'Die vier Ps des Marketings sind Planung, Personal, Produktivität und Prozesse.', false),
+                                                          ('4a7b09cc-79c9-40f3-bc5f-9e1f7e302869', '72c0b5e3-9c8d-47f7-99b5-8c4e0a0e3a0c', 'Die vier Ps des Marketings sind Plan, Produktion, Preise und Public Relations.', false),
+                                                          ('39255f8f-0b8e-4bf3-8f42-1783446f7e79', 'a9a35210-c204-4a74-93dd-529b67c725fc', 'Die SWOT-Analyse ist eine Methode zur Bewertung von Stärken (Strengths), Schwächen (Weaknesses), Chancen (Opportunities) und Bedrohungen (Threats) eines Unternehmens.', true),
+                                                          ('9c3e5e09-fd59-416b-b1e4-d8d1ff83e057', 'a9a35210-c204-4a74-93dd-529b67c725fc', 'Die SWOT-Analyse ist eine Finanzanalyse für Unternehmen.', false),
+                                                          ('d77ff1f7-7e02-4c8f-ae77-0c2f6a9131cc', 'a9a35210-c204-4a74-93dd-529b67c725fc', 'Die SWOT-Analyse ist eine Methode zur Kundenbewertung.', false);
