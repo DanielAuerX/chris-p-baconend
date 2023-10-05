@@ -13,8 +13,8 @@ public interface QuestionRepository extends JpaRepository<Question, UUID> {
     @Query(value = """
             SELECT *
             FROM question q
-            WHERE q.category_id = :category_id ORDER BY random() LIMIT 1""", nativeQuery = true)
-    Question findRandomQuestionByCategoryId(long category_id);
+            WHERE q.category_id = :categoryId ORDER BY random() LIMIT :numberOfQuestions""", nativeQuery = true)
+    List<Question> findRandomQuestionByCategoryId(long categoryId, int numberOfQuestions);
 
     List<Question> findAllByCategoryId(long category_id);
 }

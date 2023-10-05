@@ -21,13 +21,15 @@ public class QuestionService {
     private final AnswerRepository answerRepository;
     private final QuestionRepository questionRepository;
 
-    public QuestionDto getQuestionWithAnswers(Long category_id) {
-        Question randomQuestion = questionRepository.findRandomQuestionByCategoryId(category_id);
-        if (randomQuestion == null) {
-            throw new IllegalInputException("There are no questions linked to category id " + category_id + "! Please get your ducks in a row before you execute the next request.");
+    public List<QuestionDto> getRandomQuestionWithAnswers(long categoryId, int numberOfQuestions) {
+        List<Question> randomQuestions = questionRepository.findRandomQuestionByCategoryId(categoryId, numberOfQuestions);
+        if (randomQuestions.isEmpty()) {
+            throw new IllegalInputException("There are no questions linked to category id " + categoryId + "! Please get your ducks in a row before you execute the next request.");
         }
-        List<Answer> answers = answerRepository.findAnswersByQuestionId(randomQuestion.getId());
-        return new QuestionDto(randomQuestion, answers);
+        if (randomQuestions.size() < numberOfQuestions){
+            log.warn("There are not as many questions as asked for. Returning " + randomQuestions.size() + " instead.");
+        }
+        return getAnswers(randomQuestions);
     }
 
     public List<QuestionDto> getQuestionsWithAnswers(Long category_id) {

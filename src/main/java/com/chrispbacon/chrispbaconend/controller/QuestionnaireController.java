@@ -29,6 +29,11 @@ public class QuestionnaireController {
         return ResponseEntity.ok(questionService.getQuestionsWithAnswers(categoryId));
     }
 
+    @GetMapping("/random")
+    public ResponseEntity<Object> getQuestionsWithAnswers(@RequestParam Long categoryId, @RequestParam Integer numberOfQuestions) {
+        return ResponseEntity.ok(questionService.getRandomQuestionWithAnswers(categoryId, numberOfQuestions));
+    }
+
     @GetMapping("/correction")
     public ResponseEntity<Object> validateQuestion(@RequestBody List<AnswersDto> answers) {
         return ResponseEntity.ok(correctionService.evaluateAnswers(answers));
