@@ -1,7 +1,6 @@
 .target/
 .mvn/
 .gradle/
-build/
 out/
 .vscode/
 .idea/
@@ -10,6 +9,10 @@ out/
 *.iws
 *.class
 *.jar
+build/
+!build/libs
+
+
 
 *.log
 *.swp
