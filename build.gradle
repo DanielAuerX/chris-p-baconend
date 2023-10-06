@@ -7,9 +7,9 @@ plugins {
 group = 'com.chrispbacon'
 version = '0.0.1-SNAPSHOT'
 
-tasks.named("jar") {
-	enabled = false  // plain.jar file is not being created
-}
+//tasks.named("jar") {
+//	enabled = false  // plain.jar file is not being created
+//}
 
 java {
 	sourceCompatibility = '17'
