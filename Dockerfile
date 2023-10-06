@@ -1,6 +1,6 @@
 FROM amazoncorretto:17-alpine
 
-COPY ./build/libs/*-0.0.1-SNAPSHOT.jar /usr/app/
+COPY ./build/libs/**.jar /usr/app/
 WORKDIR /usr/app
 
 EXPOSE 8080
