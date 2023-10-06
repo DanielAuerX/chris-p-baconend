@@ -1,8 +1,11 @@
 FROM amazoncorretto:17-alpine
 
-COPY ./build/libs/**SNAPSHOT.jar /usr/app/
-WORKDIR /usr/app
+RUN mkdir /app
+
+COPY app.jar /app/app.jar
+
+WORKDIR /app
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "chrispybaconend-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
