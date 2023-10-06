@@ -32,7 +32,9 @@ jobs:
       run: ./gradlew test
 
     - name: copy jar file
-      run: mv build/libs/$(ls build/libs) app.jar
+      run: |
+        mv build/libs/chrispybaconend-0.0.1-SNAPSHOT.jar .
+        mv chrispybaconend-0.0.1-SNAPSHOT.jar app.jar
     - uses: actions/upload-artifact@master
       with:
         name: jar-file
