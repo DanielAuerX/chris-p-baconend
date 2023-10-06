@@ -1,0 +1,17 @@
+.target/
+.mvn/
+.gradle/
+build/
+out/
+.vscode/
+.idea/
+*.iml
+*.ipr
+*.iws
+*.class
+*.jar
+
+*.log
+*.swp
+
+src/test/
