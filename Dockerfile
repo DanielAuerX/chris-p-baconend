@@ -4,8 +4,8 @@ RUN mkdir /app
 
 COPY app.jar /app/app.jar
 
-#WORKDIR /app
+WORKDIR /app
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
