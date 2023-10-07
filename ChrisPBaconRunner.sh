@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Starting the FrontBaconend script..."
+echo "Starting the ChrisPBaconRunner script..."
 container_name="bacon"
 
 # check if daemon is running
@@ -35,19 +35,19 @@ fi
 docker exec -it "$container_name" psql -U postgres -c "DROP DATABASE IF EXISTS $container_name;"
 docker exec -it "$container_name" psql -U postgres -c "CREATE DATABASE $container_name;"
 
-# build jar file and execute
-./gradlew build
+
+# starting backend container
 echo "Starting backend..."
-nohup java -jar build/libs/chrispbaconend-1.0.jar >/dev/null 2>&1 &
-sleep 3
+docker run --name chrispbaconend -d -e SPRING_PROFILES_ACTIVE=docker -e DB_USERNAME=postgres -e DB_PASSWORD=123 -e SECRET=404E635266556A586E3272357538782F413F4428472B4B6250645367566B597012394u53984z593z4592342344asdjnkajs -p 8080:8080 dauer23/chrispbaconend
+sleep 4
 echo "..."
-sleep 3
+sleep 4
 echo "Backend started!"
 
 # add sample data
-echo "Adding sample data to the database..."
-docker cp src/main/resources/data.sql bacon:/tmp/sampledata.sql
-docker exec -it "$container_name" psql -U postgres -d "$container_name" -f /tmp/sampledata.sql
+#echo "Adding sample data to the database..."
+#docker cp src/main/resources/data.sql bacon:/tmp/sampledata.sql
+#docker exec -it "$container_name" psql -U postgres -d "$container_name" -f /tmp/sampledata.sql
 
 # start frontend
 echo "Starting frontend..."
