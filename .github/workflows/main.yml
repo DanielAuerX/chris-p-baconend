@@ -31,14 +31,14 @@ jobs:
     - name: run project tests
       run: ./gradlew test
 
-    - name: copy jar file
-      run: |
-        mv build/libs/chrispybaconend-0.0.1-SNAPSHOT.jar .
-        mv chrispybaconend-0.0.1-SNAPSHOT.jar app.jar
-    - uses: actions/upload-artifact@master
-      with:
-        name: jar-file
-        path: app.jar
+   # - name: copy jar file
+   #   run: |
+   #     mv build/libs/chrispybaconend-0.0.1-SNAPSHOT.jar .
+   #     mv chrispybaconend-0.0.1-SNAPSHOT.jar app.jar
+   # - uses: actions/upload-artifact@master
+   #   with:
+   #     name: jar-file
+   #     path: app.jar
 
   docker:
     runs-on: ubuntu-latest
@@ -47,11 +47,21 @@ jobs:
       - name: checkout code
         uses: actions/checkout@v3
 
-      - name: get jar
-        uses: actions/download-artifact@master
-        with:
-          name: jar-file
-          path: app.jar
+    #  - name: get jar
+    #    uses: actions/download-artifact@master
+    #    with:
+    #      name: jar-file
+    #      path: app.jar
+
+      - name: build with gradle
+        run: |
+          chmod +x ./gradlew
+          ./gradlew build
+
+      - name: preparing jar file
+        run: |
+          mv build/libs/chrispybaconend-0.0.1-SNAPSHOT.jar .
+          mv chrispybaconend-0.0.1-SNAPSHOT.jar app.jar
 
       - name: set up QEMU
         uses: docker/setup-qemu-action@v3
