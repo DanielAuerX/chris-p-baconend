@@ -10,7 +10,7 @@
 Cf. build.gradle for all dependencies.
 
 ### 1.2 Build script
-+ Run FrontBaconend with the location of the frontend dir as a parameter
++ Run ChrisPBaconRunner.sh with the location of the frontend dir as a parameter
 
 ## 2 Remote
 + Repo: https://github.com/DanielAuerX/chris-p-baconend
@@ -18,7 +18,7 @@ Cf. build.gradle for all dependencies.
 
 ## 3 Docker
 + docker pull dauer23/chrispbaconend
-+ run image with the following variables
++ run the container with the following variables
   + SPRING_PROFILES_ACTIVE=docker
   + DB_USERNAME=myUsername
   + DB_PASSWORD=myPassword
