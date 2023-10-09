@@ -21,6 +21,7 @@ import java.time.Duration;
 @CrossOrigin
 public class InputController {
 
+
     private final InputService inputService;
     private final Bucket bucket;
 
