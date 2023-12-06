@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: chris-p-baconend
-          image: dauer23/chrispbaconend
+          image: dauer23/chrispbaconend:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
