@@ -20,7 +20,7 @@ spec:
             - containerPort: 8080
           env:
             - name: SPRING_PROFILES_ACTIVE
-              value: "docker"
+              value: "k8s"
             - name: DB_USERNAME
               value: "postgres"
             - name: DB_PASSWORD
