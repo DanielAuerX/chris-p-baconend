@@ -32,6 +32,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/api/chrispbacon/auth/**").permitAll()
                         .requestMatchers("/api-docs/**").permitAll()
                         .requestMatchers("/swagger-ui/**").permitAll()
+                        .requestMatchers("/actuator/**").permitAll()
                         .anyRequest().authenticated()
                 )
 

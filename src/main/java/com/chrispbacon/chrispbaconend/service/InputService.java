@@ -11,6 +11,7 @@ import com.chrispbacon.chrispbaconend.repository.AnswerRequestRepository;
 import com.chrispbacon.chrispbaconend.repository.CategoryRequestRepository;
 import com.chrispbacon.chrispbaconend.repository.LearningFieldRepository;
 import com.chrispbacon.chrispbaconend.repository.QuestionRequestRepository;
+import com.chrispbacon.chrispbaconend.util.Guard;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -90,17 +91,13 @@ public class InputService {
     }
 
     private void validateQARequest(QuestionAnswerInputRequest questionAnswerInputRequest, boolean idNullCheck) {
-        if (questionAnswerInputRequest == null) {
-            throw new IllegalInputException("Enter a question and answers!");
+        Guard.againstNull(questionAnswerInputRequest, "Enter a question and answers!");
+        Guard.againstNull(questionAnswerInputRequest.getQuestion(), "Enter a valid question.");
+        Guard.againstNull(questionAnswerInputRequest.getAnswerOptions(), "Enter answers.");
+        if (idNullCheck) {
+            Guard.againstNull(questionAnswerInputRequest.getCategoryId(), "Enter a category ID.");
         }
-        if (idNullCheck && questionAnswerInputRequest.getCategoryId() == null) {
-            throw new IllegalInputException("Enter a category ID.");
-        }
-        if (questionAnswerInputRequest.getQuestion() == null || questionAnswerInputRequest.getQuestion().length() < 5) {
-            throw new IllegalInputException("Enter a valid question.");
-        }
-        if (questionAnswerInputRequest.getAnswerOptions() == null
-            || questionAnswerInputRequest.getAnswerOptions().size() < 3
+        if (questionAnswerInputRequest.getAnswerOptions().size() < 3
             || questionAnswerInputRequest.getAnswerOptions().stream().noneMatch(AnswerInputRequest::isCorrect)) {
             throw new IllegalInputException("Enter at least three answer options. At least one of the answers has to be correct.");
         }
