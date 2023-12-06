@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chris-p-baconend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chris-p-baconend
+  template:
+    metadata:
+      labels:
+        app: chris-p-baconend
+    spec:
+      containers:
+        - name: chris-p-baconend
+          image: dauer23/chrispbaconend
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "docker"
+            - name: DB_USERNAME
+              value: "postgres"
+            - name: DB_PASSWORD
+              value: "123"
+            - name: SECRET
+              value: "404E635266556A586E3272357538782F413F4428472B4B6250645367566B597012394u53984z593z4592342344asdjnkajs"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: chris-p-baconend-service
+spec:
+  selector:
+    app: chris-p-baconend
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: LoadBalancer
