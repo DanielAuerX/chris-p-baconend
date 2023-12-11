@@ -22,11 +22,20 @@ spec:
             - name: SPRING_PROFILES_ACTIVE
               value: "k8s"
             - name: DB_USERNAME
-              value: "postgres"
+              valueFrom:
+                secretKeyRef:
+                  name: db
+                  key: POSTGRES_USER
             - name: DB_PASSWORD
-              value: "123"
+              valueFrom:
+                secretKeyRef:
+                  name: db
+                  key: POSTGRES_PASSWORD
             - name: SECRET
-              value: "404E635266556A586E3272357538782F413F4428472B4B6250645367566B597012394u53984z593z4592342344asdjnkajs"
+              valueFrom:
+                secretKeyRef:
+                  name: backend
+                  key: APP_SECRET            
 ---
 apiVersion: v1
 kind: Service
