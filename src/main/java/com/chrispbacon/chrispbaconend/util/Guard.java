@@ -13,7 +13,7 @@ public class Guard {
 
     public static void againstEmptyList(List list, String errorMessage){
         if (list.isEmpty()){
-            throw new IllegalInputException(errorMessage);
+            throw new RuntimeException(errorMessage);
         }
     }
 }

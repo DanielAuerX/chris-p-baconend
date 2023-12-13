@@ -1,5 +1,6 @@
 package com.chrispbacon.chrispbaconend.chatbot;
 
+import com.chrispbacon.chrispbaconend.exception.IllegalInputException;
 import com.chrispbacon.chrispbaconend.repository.ChoiceRepository;
 import com.chrispbacon.chrispbaconend.repository.PromptRepository;
 import com.chrispbacon.chrispbaconend.util.Guard;
@@ -30,6 +31,8 @@ public class Chatbot {
         choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440011"), UUID.fromString("550e8400-e29b-41d4-a716-446655440001"));
         choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440012"), UUID.fromString("550e8400-e29b-41d4-a716-446655440001"));
         choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440013"), UUID.fromString("550e8400-e29b-41d4-a716-446655440001"));
+        choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440017"), UUID.fromString("550e8400-e29b-41d4-a716-446655440002"));
+        choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440018"), UUID.fromString("550e8400-e29b-41d4-a716-446655440003"));
         return choiceToPromptMapping;
     }
 
@@ -37,15 +40,18 @@ public class Chatbot {
         UUID initialPromptId = UUID.fromString("550e8400-e29b-41d4-a716-446655440000");
         Prompt initialPrompt = promptRepository.findById(initialPromptId).orElseThrow();
         List<Choice> initialChoices = choiceRepository.findAllByPromptId(initialPromptId);
-        Guard.againstEmptyList(initialChoices, "No choices found for prompt " + initialPromptId);
+        Guard.againstEmptyList(initialChoices, "No choices found for prompt " + initialPrompt);
         return new PromptDto(initialPrompt.getId(), initialPrompt.getText(), initialChoices);
     }
 
     public PromptDto getNextPrompt(UUID previousChoiceId) {
         UUID nextPromptId = choiceToPromptMapping.get(previousChoiceId);
         Prompt initialPrompt = promptRepository.findById(nextPromptId).orElseThrow();
-        List<Choice> initialChoices = choiceRepository.findAllByPromptId(nextPromptId);
-        Guard.againstEmptyList(initialChoices, "No choices found for prompt " + nextPromptId);
-        return new PromptDto(initialPrompt.getId(), initialPrompt.getText(), initialChoices);
+        List<Choice> nextChoices = choiceRepository.findAllByPromptId(nextPromptId);
+        if (nextChoices.isEmpty()){
+            return new PromptDto(initialPrompt.getId(), initialPrompt.getText());
+        }
+        return new PromptDto(initialPrompt.getId(), initialPrompt.getText(), nextChoices);
     }
+
 }
