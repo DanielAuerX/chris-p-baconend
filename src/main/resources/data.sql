@@ -112,3 +112,16 @@ insert into answer (id, question_id, answer, correct) values
                                                           ('39255f8f-0b8e-4bf3-8f42-1783446f7e79', 'a9a35210-c204-4a74-93dd-529b67c725fc', 'Die SWOT-Analyse ist eine Methode zur Bewertung von Stärken (Strengths), Schwächen (Weaknesses), Chancen (Opportunities) und Bedrohungen (Threats) eines Unternehmens.', true),
                                                           ('9c3e5e09-fd59-416b-b1e4-d8d1ff83e057', 'a9a35210-c204-4a74-93dd-529b67c725fc', 'Die SWOT-Analyse ist eine Finanzanalyse für Unternehmen.', false),
                                                           ('d77ff1f7-7e02-4c8f-ae77-0c2f6a9131cc', 'a9a35210-c204-4a74-93dd-529b67c725fc', 'Die SWOT-Analyse ist eine Methode zur Kundenbewertung.', false);
+
+
+INSERT INTO chatbot_prompt (id, text) VALUES ('550e8400-e29b-41d4-a716-446655440000', 'Hey there! Welcome to our little corner of the internet! I''m Eugen, your friendly chat companion. How''s your day going?'),
+                                     ('550e8400-e29b-41d4-a716-446655440001', 'Great stuff! I''m here to lend a hand. What seems to be the issue you''re facing today?');
+
+INSERT INTO chatbot_choice (prompt_id, id, choice_text) VALUES
+                                                        ('550e8400-e29b-41d4-a716-446655440000', '550e8400-e29b-41d4-a716-446655440011', 'Amazing!'),
+                                                        ('550e8400-e29b-41d4-a716-446655440000', '550e8400-e29b-41d4-a716-446655440012', 'Very great!'),
+                                                        ('550e8400-e29b-41d4-a716-446655440000', '550e8400-e29b-41d4-a716-446655440013', 'Great!'),
+                                                        ('550e8400-e29b-41d4-a716-446655440001', '550e8400-e29b-41d4-a716-446655440014', 'I have a problem with my user account.'),
+                                                        ('550e8400-e29b-41d4-a716-446655440001', '550e8400-e29b-41d4-a716-446655440015', 'I want to report a problem with the content.'),
+                                                        ('550e8400-e29b-41d4-a716-446655440001', '550e8400-e29b-41d4-a716-446655440016', 'I have a technical issue.'),
+                                                        ('550e8400-e29b-41d4-a716-446655440001', '550e8400-e29b-41d4-a716-446655440017', 'I have a completely different problem.');
