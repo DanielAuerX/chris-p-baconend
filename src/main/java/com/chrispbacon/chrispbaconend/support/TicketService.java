@@ -23,7 +23,7 @@ public class TicketService {
     @Value("${chrispbacon.ticket.token}")
     private String TOKEN;
 
-    public void createGitHubIssue(TicketDto ticketDto) {
+    public HttpStatusCode createGitHubIssue(TicketDto ticketDto) {
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(TOKEN);
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -38,11 +38,10 @@ public class TicketService {
 
         ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, requestEntity, String.class);
 
-        if (response.getStatusCode() == HttpStatus.CREATED) {
-            log.info("Issue created successfully!");
-        } else {
+        if (response.getStatusCode() != HttpStatus.CREATED) {
             log.error("Failed to create issue. Status code: " + response.getStatusCode());
         }
+        return response.getStatusCode();
     }
 
 }
