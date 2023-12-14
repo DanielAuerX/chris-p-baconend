@@ -121,10 +121,11 @@ INSERT INTO chatbot_prompt (id, text) VALUES ('550e8400-e29b-41d4-a716-446655440
                                      ('550e8400-e29b-41d4-a716-446655440004', 'I am very sorry! What kind of technical problem did you encounter?'),
                                      ('550e8400-e29b-41d4-a716-446655440005', 'Great choice! Just click on the link below and create a ticket for our staff! Thank you and good bye :)\nhttp://localhost:5173/support'),
                                      ('550e8400-e29b-41d4-a716-446655440006', 'Let''s tackle this content issue together. Could you share a bit more detail so I can swoop in with the right solution?'),
-                                     ('550e8400-e29b-41d4-a716-446655440007', 'Ah okay! First, thank you that you want to improve our website! Click on the "Contribute" button in the main menu at top of the website. There you will find further instructions.'),
+                                     ('550e8400-e29b-41d4-a716-446655440007', 'Ah okay! First, thank you that you want to improve our website! Click on the "Contribute" button in the main menu at top of the website. There you will find further instructions. Was this helpful?'),
                                      ('550e8400-e29b-41d4-a716-446655440008', 'User accounts are my specialty. Let''s get to the bottom of this. What do you want to do with your account?'),
-                                     ('550e8400-e29b-41d4-a716-446655440009', 'Sure thing! To edit your account, simply click on your account icon in the right top corner and then on the ''Edit'' button. Afterward follow the instructions provided. If you need any further help along the way, I''ll be right here! Happy editing!'),
-                                     ('550e8400-e29b-41d4-a716-446655440100', 'Understood. Deleting your account can be done through the account settings section. Look for the ''Delete Account'' option there. Just a heads-up, this action is irreversible. If you need guidance or have any concerns, I''m here to help.');
+                                     ('550e8400-e29b-41d4-a716-446655440009', 'Sure thing! To edit your account, simply click on your account icon in the right top corner and then on the ''Edit'' button. Afterward follow the instructions provided. Did this resolve the issue for you?'),
+                                     ('550e8400-e29b-41d4-a716-446655440100', 'Understood. Deleting your account can be done through the account settings section. Look for the ''Delete Account'' option there. Just a heads-up, this action is irreversible. If you need further guidance?'),
+                                     ('550e8400-e29b-41d4-a716-446655440101', 'Great stuff! Have a fantastic day ahead! If you need anything else, I''m just a message away. Take care and bye for now!');
 
 INSERT INTO chatbot_choice (prompt_id, id, choice_text) VALUES
                                                         ('550e8400-e29b-41d4-a716-446655440000', '550e8400-e29b-41d4-a716-446655440011', 'Amazing!'),
@@ -141,4 +142,10 @@ INSERT INTO chatbot_choice (prompt_id, id, choice_text) VALUES
                                                         ('550e8400-e29b-41d4-a716-446655440006', '550e8400-e29b-41d4-a716-446655440022', 'I want to add new content and I don''t know how.'),
                                                         ('550e8400-e29b-41d4-a716-446655440006', '550e8400-e29b-41d4-a716-446655440023', 'I want to report a mistake in the content.'),
                                                         ('550e8400-e29b-41d4-a716-446655440008', '550e8400-e29b-41d4-a716-446655440024', 'I want to edit my account.'),
-                                                        ('550e8400-e29b-41d4-a716-446655440008', '550e8400-e29b-41d4-a716-446655440025', 'I want to delete my account.');
+                                                        ('550e8400-e29b-41d4-a716-446655440008', '550e8400-e29b-41d4-a716-446655440025', 'I want to delete my account.'),
+                                                        ('550e8400-e29b-41d4-a716-446655440009', '550e8400-e29b-41d4-a716-446655440026', 'This did not solve my issue.'),
+                                                        ('550e8400-e29b-41d4-a716-446655440009', '550e8400-e29b-41d4-a716-446655440027', 'Yes, thank you :)');
+                                                        ('550e8400-e29b-41d4-a716-446655440100', '550e8400-e29b-41d4-a716-446655440028', 'No, thank you. This solved my problem.');
+                                                        ('550e8400-e29b-41d4-a716-446655440100', '550e8400-e29b-41d4-a716-446655440029', 'Yes, I need further guidance.');
+                                                        ('550e8400-e29b-41d4-a716-446655440007', '550e8400-e29b-41d4-a716-446655440030', 'Yes, I don''t need further help.');
+                                                        ('550e8400-e29b-41d4-a716-446655440007', '550e8400-e29b-41d4-a716-446655440031', 'No, I need more help.');

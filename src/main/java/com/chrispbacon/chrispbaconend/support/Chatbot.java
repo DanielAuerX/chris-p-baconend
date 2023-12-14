@@ -25,21 +25,30 @@ public class Chatbot {
 
     private Map<UUID, UUID> getChoiceToPromptMapping() {
         HashMap<UUID, UUID> choiceToPromptMapping = new HashMap<>();
-        choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440011"), UUID.fromString("550e8400-e29b-41d4-a716-446655440001"));
-        choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440012"), UUID.fromString("550e8400-e29b-41d4-a716-446655440001"));
-        choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440013"), UUID.fromString("550e8400-e29b-41d4-a716-446655440001"));
-        choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440017"), UUID.fromString("550e8400-e29b-41d4-a716-446655440002"));
+        String askForProblem = "550e8400-e29b-41d4-a716-446655440001";
+        String delegateToNonNpc = "550e8400-e29b-41d4-a716-446655440002";
+        String sayBye = "550e8400-e29b-41d4-a716-446655440101";
+        choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440011"), UUID.fromString(askForProblem));
+        choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440012"), UUID.fromString(askForProblem));
+        choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440013"), UUID.fromString(askForProblem));
+        choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440017"), UUID.fromString(delegateToNonNpc));
         choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440018"), UUID.fromString("550e8400-e29b-41d4-a716-446655440003"));
         choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440016"), UUID.fromString("550e8400-e29b-41d4-a716-446655440004"));
-        choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440020"), UUID.fromString("550e8400-e29b-41d4-a716-446655440002"));
-        choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440021"), UUID.fromString("550e8400-e29b-41d4-a716-446655440002"));
+        choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440020"), UUID.fromString(delegateToNonNpc));
+        choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440021"), UUID.fromString(delegateToNonNpc));
         choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440015"), UUID.fromString("550e8400-e29b-41d4-a716-446655440006"));
-        choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440023"), UUID.fromString("550e8400-e29b-41d4-a716-446655440002"));
+        choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440023"), UUID.fromString(delegateToNonNpc));
         choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440022"), UUID.fromString("550e8400-e29b-41d4-a716-446655440007"));
         choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440014"), UUID.fromString("550e8400-e29b-41d4-a716-446655440008"));
         choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440024"), UUID.fromString("550e8400-e29b-41d4-a716-446655440009"));
         choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440025"), UUID.fromString("550e8400-e29b-41d4-a716-446655440100"));
         choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440019"), UUID.fromString("550e8400-e29b-41d4-a716-446655440005"));
+        choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440026"), UUID.fromString(delegateToNonNpc));
+        choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440027"), UUID.fromString(sayBye));
+        choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440029"), UUID.fromString(delegateToNonNpc));
+        choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440028"), UUID.fromString(sayBye));
+        choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440030"), UUID.fromString(sayBye));
+        choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440031"), UUID.fromString(delegateToNonNpc));
         return choiceToPromptMapping;
     }
 
