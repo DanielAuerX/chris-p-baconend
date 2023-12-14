@@ -1,19 +1,16 @@
-package com.chrispbacon.chrispbaconend.chatbot;
+package com.chrispbacon.chrispbaconend.support;
 
 import com.chrispbacon.chrispbaconend.repository.ChoiceRepository;
 import com.chrispbacon.chrispbaconend.repository.PromptRepository;
 import com.chrispbacon.chrispbaconend.util.Guard;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
 @Component
-@Slf4j
 public class Chatbot {
 
     private final PromptRepository promptRepository;

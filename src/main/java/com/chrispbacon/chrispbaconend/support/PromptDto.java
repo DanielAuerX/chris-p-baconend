@@ -1,4 +1,4 @@
-package com.chrispbacon.chrispbaconend.chatbot;
+package com.chrispbacon.chrispbaconend.support;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 

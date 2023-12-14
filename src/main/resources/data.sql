@@ -119,7 +119,7 @@ INSERT INTO chatbot_prompt (id, text) VALUES ('550e8400-e29b-41d4-a716-446655440
                                      ('550e8400-e29b-41d4-a716-446655440002', 'Hmm... I think you should contact our service via telephone or write a ticket. Please choose one option.'),
                                      ('550e8400-e29b-41d4-a716-446655440003', 'Great choice! Just call +49190123456789 and Timo, our friendly phone service person, will take care of you! He is available from 8h till 17h on weekdays. Thank you and good bye :)'),
                                      ('550e8400-e29b-41d4-a716-446655440004', 'I am very sorry! What kind of technical problem did you encounter?'),
-                                     ('550e8400-e29b-41d4-a716-446655440005', 'Great choice! Just click on the link below and create a ticket for our staff! Thank you and good bye :)'),
+                                     ('550e8400-e29b-41d4-a716-446655440005', 'Great choice! Just click on the link below and create a ticket for our staff! Thank you and good bye :)\nhttp://localhost:5173/support'),
                                      ('550e8400-e29b-41d4-a716-446655440006', 'Let''s tackle this content issue together. Could you share a bit more detail so I can swoop in with the right solution?'),
                                      ('550e8400-e29b-41d4-a716-446655440007', 'Ah okay! First, thank you that you want to improve our website! Click on the "Contribute" button in the main menu at top of the website. There you will find further instructions.'),
                                      ('550e8400-e29b-41d4-a716-446655440008', 'User accounts are my specialty. Let''s get to the bottom of this. What do you want to do with your account?'),

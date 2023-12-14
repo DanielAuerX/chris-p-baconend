@@ -1,4 +1,4 @@
-package com.chrispbacon.chrispbaconend.chatbot;
+package com.chrispbacon.chrispbaconend.support;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
