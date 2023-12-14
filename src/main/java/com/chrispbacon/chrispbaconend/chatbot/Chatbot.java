@@ -38,6 +38,9 @@ public class Chatbot {
         choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440015"), UUID.fromString("550e8400-e29b-41d4-a716-446655440006"));
         choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440023"), UUID.fromString("550e8400-e29b-41d4-a716-446655440002"));
         choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440022"), UUID.fromString("550e8400-e29b-41d4-a716-446655440007"));
+        choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440014"), UUID.fromString("550e8400-e29b-41d4-a716-446655440008"));
+        choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440024"), UUID.fromString("550e8400-e29b-41d4-a716-446655440009"));
+        choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440025"), UUID.fromString("550e8400-e29b-41d4-a716-446655440100"));
         return choiceToPromptMapping;
     }
 
