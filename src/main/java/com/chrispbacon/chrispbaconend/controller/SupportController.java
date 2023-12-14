@@ -2,12 +2,12 @@ package com.chrispbacon.chrispbaconend.controller;
 
 import com.chrispbacon.chrispbaconend.support.Chatbot;
 import com.chrispbacon.chrispbaconend.support.PromptDto;
-import com.chrispbacon.chrispbaconend.model.InputSetRequest;
 import com.chrispbacon.chrispbaconend.support.TicketDto;
 import com.chrispbacon.chrispbaconend.support.TicketService;
 import io.github.bucket4j.Bandwidth;
 import io.github.bucket4j.Bucket;
 import io.github.bucket4j.Refill;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -39,8 +39,8 @@ public class SupportController {
     }
 
     @GetMapping()
-    public ResponseEntity<PromptDto> getInitialPrompt() {
-        return ResponseEntity.ok(chatbot.getInitialPrompt());
+    public ResponseEntity<PromptDto> getInitialPrompt(HttpServletRequest request) {
+        return ResponseEntity.ok(chatbot.getInitialPrompt(request));
     }
 
     @GetMapping("/{id}")

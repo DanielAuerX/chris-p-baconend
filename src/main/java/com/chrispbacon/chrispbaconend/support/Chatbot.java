@@ -1,8 +1,11 @@
 package com.chrispbacon.chrispbaconend.support;
 
+import com.chrispbacon.chrispbaconend.config.JwtService;
 import com.chrispbacon.chrispbaconend.repository.ChoiceRepository;
 import com.chrispbacon.chrispbaconend.repository.PromptRepository;
 import com.chrispbacon.chrispbaconend.util.Guard;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -15,11 +18,14 @@ public class Chatbot {
 
     private final PromptRepository promptRepository;
     private final ChoiceRepository choiceRepository;
+    private final JwtService jwtService;
+
     private final Map<UUID, UUID> choiceToPromptMapping;
 
-    public Chatbot(PromptRepository promptRepository, ChoiceRepository choiceRepository) {
+    public Chatbot(PromptRepository promptRepository, ChoiceRepository choiceRepository, JwtService jwtService) {
         this.promptRepository = promptRepository;
         this.choiceRepository = choiceRepository;
+        this.jwtService = jwtService;
         this.choiceToPromptMapping = getChoiceToPromptMapping();
     }
 
@@ -52,12 +58,21 @@ public class Chatbot {
         return choiceToPromptMapping;
     }
 
-    public PromptDto getInitialPrompt() {
+    public PromptDto getInitialPrompt(HttpServletRequest request) {
         UUID initialPromptId = UUID.fromString("550e8400-e29b-41d4-a716-446655440000");
         Prompt initialPrompt = promptRepository.findById(initialPromptId).orElseThrow();
+        insertUsernameIntoText(request, initialPrompt);
         List<Choice> initialChoices = choiceRepository.findAllByPromptId(initialPromptId);
         Guard.againstEmptyList(initialChoices, "No choices found for prompt " + initialPrompt);
         return new PromptDto(initialPrompt.getId(), initialPrompt.getText(), initialChoices);
+    }
+
+    private void insertUsernameIntoText(HttpServletRequest request, Prompt initialPrompt) {
+        final String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
+        final String refreshToken = authHeader.substring(7);
+        String username = jwtService.extractUsername(refreshToken);
+        String textWithUsername = initialPrompt.getText().replace("{username}", username);
+        initialPrompt.setText(textWithUsername);
     }
 
     public PromptDto getNextPrompt(UUID previousChoiceId) {
