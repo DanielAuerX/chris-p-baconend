@@ -1,6 +1,5 @@
 package com.chrispbacon.chrispbaconend.chatbot;
 
-import com.chrispbacon.chrispbaconend.exception.IllegalInputException;
 import com.chrispbacon.chrispbaconend.repository.ChoiceRepository;
 import com.chrispbacon.chrispbaconend.repository.PromptRepository;
 import com.chrispbacon.chrispbaconend.util.Guard;
@@ -33,6 +32,12 @@ public class Chatbot {
         choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440013"), UUID.fromString("550e8400-e29b-41d4-a716-446655440001"));
         choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440017"), UUID.fromString("550e8400-e29b-41d4-a716-446655440002"));
         choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440018"), UUID.fromString("550e8400-e29b-41d4-a716-446655440003"));
+        choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440016"), UUID.fromString("550e8400-e29b-41d4-a716-446655440004"));
+        choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440020"), UUID.fromString("550e8400-e29b-41d4-a716-446655440002"));
+        choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440021"), UUID.fromString("550e8400-e29b-41d4-a716-446655440002"));
+        choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440015"), UUID.fromString("550e8400-e29b-41d4-a716-446655440006"));
+        choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440023"), UUID.fromString("550e8400-e29b-41d4-a716-446655440002"));
+        choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440022"), UUID.fromString("550e8400-e29b-41d4-a716-446655440007"));
         return choiceToPromptMapping;
     }
 
@@ -45,7 +50,9 @@ public class Chatbot {
     }
 
     public PromptDto getNextPrompt(UUID previousChoiceId) {
+        log.info("previous choice: {}", previousChoiceId);
         UUID nextPromptId = choiceToPromptMapping.get(previousChoiceId);
+        log.info("next prompt: {}", nextPromptId);
         Prompt initialPrompt = promptRepository.findById(nextPromptId).orElseThrow();
         List<Choice> nextChoices = choiceRepository.findAllByPromptId(nextPromptId);
         if (nextChoices.isEmpty()){

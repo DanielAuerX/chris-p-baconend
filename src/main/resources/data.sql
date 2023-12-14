@@ -116,16 +116,24 @@ insert into answer (id, question_id, answer, correct) values
 
 INSERT INTO chatbot_prompt (id, text) VALUES ('550e8400-e29b-41d4-a716-446655440000', 'Hey there! Welcome to our little corner of the internet! I''m Eugen, your friendly chat companion. How''s your day going?'),
                                      ('550e8400-e29b-41d4-a716-446655440001', 'Great stuff! I''m here to lend a hand. What seems to be the issue you''re facing today?'),
-                                     ('550e8400-e29b-41d4-a716-446655440002', 'Hmm... if you have a different problem, you should contact via telephone or write a ticket. Please choose one option.'),
-                                     ('550e8400-e29b-41d4-a716-446655440003', 'Great choice! Just call +49190123456789 and Timo, our friendly phone service person, will take care of you! Thank you and good bye :)');
+                                     ('550e8400-e29b-41d4-a716-446655440002', 'Hmm... I think you should contact our service via telephone or write a ticket. Please choose one option.'),
+                                     ('550e8400-e29b-41d4-a716-446655440003', 'Great choice! Just call +49190123456789 and Timo, our friendly phone service person, will take care of you! He is available from 8h till 17h on weekdays. Thank you and good bye :)'),
+                                     ('550e8400-e29b-41d4-a716-446655440004', 'I am very sorry! What kind of technical problem did you encounter?'),
+                                     ('550e8400-e29b-41d4-a716-446655440005', 'Great choice! Just click on the link below and create a ticket for our staff! Thank you and good bye :)'),
+                                     ('550e8400-e29b-41d4-a716-446655440006', 'Let''s tackle this content issue together. Could you share a bit more detail so I can swoop in with the right solution?'),
+                                     ('550e8400-e29b-41d4-a716-446655440007', 'Ah okay! First, thank you that you want to improve our website! Click on the "Contribute" button in the main menu at top of the website. There you will find further instructions.');
 
 INSERT INTO chatbot_choice (prompt_id, id, choice_text) VALUES
                                                         ('550e8400-e29b-41d4-a716-446655440000', '550e8400-e29b-41d4-a716-446655440011', 'Amazing!'),
                                                         ('550e8400-e29b-41d4-a716-446655440000', '550e8400-e29b-41d4-a716-446655440012', 'Very great!'),
                                                         ('550e8400-e29b-41d4-a716-446655440000', '550e8400-e29b-41d4-a716-446655440013', 'Great!'),
                                                         ('550e8400-e29b-41d4-a716-446655440001', '550e8400-e29b-41d4-a716-446655440014', 'I have a problem with my user account.'),
-                                                        ('550e8400-e29b-41d4-a716-446655440001', '550e8400-e29b-41d4-a716-446655440015', 'I want to report a problem with the content.'),
+                                                        ('550e8400-e29b-41d4-a716-446655440001', '550e8400-e29b-41d4-a716-446655440015', 'I want to report a content related issue.'),
                                                         ('550e8400-e29b-41d4-a716-446655440001', '550e8400-e29b-41d4-a716-446655440016', 'I have a technical issue.'),
                                                         ('550e8400-e29b-41d4-a716-446655440001', '550e8400-e29b-41d4-a716-446655440017', 'I have a completely different problem.'),
                                                         ('550e8400-e29b-41d4-a716-446655440002', '550e8400-e29b-41d4-a716-446655440018', 'I want to call the support.'),
-                                                        ('550e8400-e29b-41d4-a716-446655440002', '550e8400-e29b-41d4-a716-446655440019', 'I want to write a ticket and get contacted by email.');
+                                                        ('550e8400-e29b-41d4-a716-446655440002', '550e8400-e29b-41d4-a716-446655440019', 'I want to write a ticket and get contacted by email.'),
+                                                        ('550e8400-e29b-41d4-a716-446655440004', '550e8400-e29b-41d4-a716-446655440020', 'The website is not rendering correctly.'),
+                                                        ('550e8400-e29b-41d4-a716-446655440004', '550e8400-e29b-41d4-a716-446655440021', 'The website is loading slowly.'),
+                                                        ('550e8400-e29b-41d4-a716-446655440006', '550e8400-e29b-41d4-a716-446655440022', 'I want to add new content and I don''t know how.'),
+                                                        ('550e8400-e29b-41d4-a716-446655440006', '550e8400-e29b-41d4-a716-446655440023', 'I want to report a mistake in the content.');
