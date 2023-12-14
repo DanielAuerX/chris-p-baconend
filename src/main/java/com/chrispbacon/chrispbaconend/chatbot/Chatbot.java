@@ -6,6 +6,7 @@ import com.chrispbacon.chrispbaconend.util.Guard;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,6 +42,7 @@ public class Chatbot {
         choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440014"), UUID.fromString("550e8400-e29b-41d4-a716-446655440008"));
         choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440024"), UUID.fromString("550e8400-e29b-41d4-a716-446655440009"));
         choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440025"), UUID.fromString("550e8400-e29b-41d4-a716-446655440100"));
+        choiceToPromptMapping.put(UUID.fromString("550e8400-e29b-41d4-a716-446655440019"), UUID.fromString("550e8400-e29b-41d4-a716-446655440005"));
         return choiceToPromptMapping;
     }
 
@@ -53,9 +55,7 @@ public class Chatbot {
     }
 
     public PromptDto getNextPrompt(UUID previousChoiceId) {
-        log.info("previous choice: {}", previousChoiceId);
         UUID nextPromptId = choiceToPromptMapping.get(previousChoiceId);
-        log.info("next prompt: {}", nextPromptId);
         Prompt initialPrompt = promptRepository.findById(nextPromptId).orElseThrow();
         List<Choice> nextChoices = choiceRepository.findAllByPromptId(nextPromptId);
         if (nextChoices.isEmpty()){
