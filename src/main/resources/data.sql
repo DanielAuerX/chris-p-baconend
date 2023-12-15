@@ -125,7 +125,8 @@ INSERT INTO chatbot_prompt (id, text) VALUES ('550e8400-e29b-41d4-a716-446655440
                                      ('550e8400-e29b-41d4-a716-446655440008', 'User accounts are my specialty. Let''s get to the bottom of this. What do you want to do with your account?'),
                                      ('550e8400-e29b-41d4-a716-446655440009', 'Sure thing! To edit your account, simply click on your account icon in the right top corner and then on the ''Edit'' button. Afterward follow the instructions provided. Did this resolve the issue for you?'),
                                      ('550e8400-e29b-41d4-a716-446655440100', 'Understood. Deleting your account can be done through the account settings section. Look for the ''Delete Account'' option there. Just a heads-up, this action is irreversible. If you need further guidance?'),
-                                     ('550e8400-e29b-41d4-a716-446655440101', 'Great stuff! Have a fantastic day ahead! If you need anything else, I''m just a message away. Take care and bye for now!');
+                                     ('550e8400-e29b-41d4-a716-446655440101', 'Great stuff! Have a fantastic day ahead! If you need anything else, I''m just a message away. Take care and bye for now!'),
+                                     ('550e8400-e29b-41d4-a716-446655440102', 'Slow loading can sometimes link back to your internet connection. It might help to check your connection or reach out to your internet service provider (ISP) for any ongoing issues. Was this helpful for now?');
 
 INSERT INTO chatbot_choice (prompt_id, id, choice_text) VALUES
                                                         ('550e8400-e29b-41d4-a716-446655440000', '550e8400-e29b-41d4-a716-446655440011', 'Amazing!'),
@@ -148,4 +149,6 @@ INSERT INTO chatbot_choice (prompt_id, id, choice_text) VALUES
                                                         ('550e8400-e29b-41d4-a716-446655440100', '550e8400-e29b-41d4-a716-446655440028', 'No, thank you. This solved my problem.'),
                                                         ('550e8400-e29b-41d4-a716-446655440100', '550e8400-e29b-41d4-a716-446655440029', 'Yes, I need further guidance.'),
                                                         ('550e8400-e29b-41d4-a716-446655440007', '550e8400-e29b-41d4-a716-446655440030', 'Yes, I don''t need further help.'),
-                                                        ('550e8400-e29b-41d4-a716-446655440007', '550e8400-e29b-41d4-a716-446655440031', 'No, I need more help.');
+                                                        ('550e8400-e29b-41d4-a716-446655440007', '550e8400-e29b-41d4-a716-446655440031', 'No, I need more help.'),
+                                                        ('550e8400-e29b-41d4-a716-446655440102', '550e8400-e29b-41d4-a716-446655440032', 'Yes, that was very helpful!'),
+                                                        ('550e8400-e29b-41d4-a716-446655440102', '550e8400-e29b-41d4-a716-446655440033', 'No, I need more help.');
