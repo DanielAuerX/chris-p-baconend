@@ -50,7 +50,7 @@ public class SupportController {
 
     @PostMapping("/ticket")
     public ResponseEntity<Object> receiveCategoryRequest(@RequestBody TicketDto ticketDto) {
-        if (bucket.tryConsume(5)) {
+        if (bucket.tryConsume(1)) {
             return ResponseEntity.ok(ticketService.createGitHubIssue(ticketDto));
         }
         return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).build();
