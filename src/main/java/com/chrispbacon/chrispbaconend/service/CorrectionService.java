@@ -38,7 +38,7 @@ public class CorrectionService {
 
     private void saveResults(List<CorrectionDto> corrections, String username) {
         if (corrections.stream().allMatch(CorrectionDto::isCorrect)) {
-            Student user = userRepository.findByUserName(username)
+            Student user = userRepository.findByUsername(username)
                     .orElseThrow();
             Question question = questionRepository.findById(corrections.get(0).questionId()).orElseThrow();
             ArrayList<Long> finishedCategories = new ArrayList<>(user.getFinishedCategories());

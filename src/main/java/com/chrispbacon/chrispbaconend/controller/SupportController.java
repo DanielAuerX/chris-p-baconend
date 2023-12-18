@@ -49,9 +49,9 @@ public class SupportController {
     }
 
     @PostMapping("/ticket")
-    public ResponseEntity<Object> receiveCategoryRequest(@RequestBody TicketDto ticketDto) {
+    public ResponseEntity<Object> createTicket(@RequestBody TicketDto ticketDto, HttpServletRequest request) {
         if (bucket.tryConsume(1)) {
-            return ResponseEntity.ok(ticketService.createGitHubIssue(ticketDto));
+            return ResponseEntity.ok(ticketService.createGitHubIssue(ticketDto, request));
         }
         return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).build();
     }

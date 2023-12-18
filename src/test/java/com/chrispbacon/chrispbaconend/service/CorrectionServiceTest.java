@@ -51,7 +51,7 @@ class CorrectionServiceTest {
         Category category = new Category(1L, null, null, null, null);
         Question question = new Question(questionId, null, category, null);
         when(answerRepository.findCorrectAnswerIdsByQuestionId(questionId)).thenReturn(correctAnswers);
-        when(userRepository.findByUserName(any(String.class))).thenReturn(Optional.of(user));
+        when(userRepository.findByUsername(any(String.class))).thenReturn(Optional.of(user));
         when(questionRepository.findById(questionId)).thenReturn(Optional.of(question));
         when(userRepository.save(user)).thenReturn(user);
         List<AnswersDto> answersDtos = List.of(new AnswersDto(questionId, correctAnswers));
@@ -61,7 +61,7 @@ class CorrectionServiceTest {
 
         assertEquals(1, corrections.size());
         assertTrue(corrections.get(0).isCorrect());
-        verify(userRepository).findByUserName(any(String.class));
+        verify(userRepository).findByUsername(any(String.class));
         verify(questionRepository).findById(questionId);
         verify(userRepository).save(user);
     }
