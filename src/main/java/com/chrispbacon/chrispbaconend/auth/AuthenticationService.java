@@ -55,7 +55,7 @@ public class AuthenticationService {
     }
 
     public boolean checkIfUserNameExists(RegisterRequest request) {
-        return userRepository.findByUsername(request.getUserName()).isPresent();
+        return userRepository.findByUserName(request.getUserName()).isPresent();
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
@@ -65,7 +65,7 @@ public class AuthenticationService {
                         request.getPassword()
                 )
         );
-        var user = userRepository.findByUsername(request.getUserName())
+        var user = userRepository.findByUserName(request.getUserName())
                 .orElseThrow();
         var jwtToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(user);
@@ -118,7 +118,7 @@ public class AuthenticationService {
         refreshToken = authHeader.substring(7);
         userName = jwtService.extractUsername(refreshToken);
         if (userName != null) {
-            var user = this.userRepository.findByUsername(userName)
+            var user = this.userRepository.findByUserName(userName)
                     .orElseThrow();
             if (jwtService.isTokenValid(refreshToken, user)) {
                 var accessToken = jwtService.generateToken(user);

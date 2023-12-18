@@ -41,6 +41,7 @@ public class TicketService {
         String url = GITHUB_API_URL.replace("{owner}", OWNER).replace("{repo}", REPO);
 
         String jsonBody = String.format("{\"title\": \"%s\", \"body\": \"%s\"}", compileTitle(ticketDto), compileBody(ticketDto, request));
+        log.info(jsonBody);
 
         HttpEntity<String> requestEntity = new HttpEntity<>(jsonBody, headers);
 
@@ -58,12 +59,12 @@ public class TicketService {
 
     private String compileBody(TicketDto ticketDto, HttpServletRequest request) {
         Student user = getUser(request);
-        return String.format("\"User\": \"%s\"\n\"Email\": \"%s\"\n\"%s\"", user.getUsername(), user.getEmail(), ticketDto.body());
+        return String.format("%s, %s: %s", user.getUsername(), user.getEmail(), ticketDto.body());
     }
 
     private Student getUser(HttpServletRequest request) {
         String username = getUsername(request);
-        return userRepository.findByUsername(username).orElseThrow();
+        return userRepository.findByUserName(username).orElseThrow();
     }
 
     private String getUsername(HttpServletRequest request) {

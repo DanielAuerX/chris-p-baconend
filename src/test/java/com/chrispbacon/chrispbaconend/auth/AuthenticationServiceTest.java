@@ -68,7 +68,7 @@ class AuthenticationServiceTest {
         Student student = new Student(UUID.randomUUID(), "test@email.com", "maxCool", "123", "hans", "müller", Role.USER, new ArrayList<>());
         AuthenticationRequest authenticationRequest = new AuthenticationRequest(student.getUsername(), student.getPassword());
         when(authenticationManager.authenticate(any(UsernamePasswordAuthenticationToken.class))).thenReturn(null);
-        when(userRepository.findByUsername(authenticationRequest.getUserName())).thenReturn(Optional.of(student));
+        when(userRepository.findByUserName(authenticationRequest.getUserName())).thenReturn(Optional.of(student));
         String token = "abcdefgh";
         when(jwtService.generateToken(any(UserDetails.class))).thenReturn(token);
         String refreshToken = "1234567890";
